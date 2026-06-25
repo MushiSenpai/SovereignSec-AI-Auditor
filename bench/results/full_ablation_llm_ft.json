@@ -1,0 +1,38 @@
+{
+  "label": "ft",
+  "model_dir": "out/real_adapter_7b",
+  "n_pos": 20,
+  "n_neg": 20,
+  "TP": 20,
+  "FN": 0,
+  "FP": 0,
+  "TN": 20,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "accuracy": 1.0,
+  "eval_time_s": 23.0,
+  "sec_per_audit": 0.58,
+  "samples": [
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-400\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-400\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-22\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-20\",\"severity\":\"high\",\"confidence\":0.85}"
+    }
+  ]
+}

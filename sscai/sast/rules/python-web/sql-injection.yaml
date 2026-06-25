@@ -1,0 +1,48 @@
+# SovereignSec-AI — our own Semgrep rule (shippable; LGPL engine + our rules).
+# IMPL_SPEC §2. Validate/test in CI: `semgrep --validate --config .` / `--test`.
+# NOTE: Semgrep CE taint is SINGLE-FILE only. Cross-file SQLi (the seeded demo's
+# app->services->db path) is NOT caught here — that's what L1's inter-proc taint
+# worklist is for. This rule catches the common in-file case reliably.
+rules:
+  - id: sovsec-python-sqli-string-format-taint
+    mode: taint
+    severity: ERROR
+    languages: [python]
+    message: >
+      User-controlled input flows into a raw SQL string (built via % / .format /
+      f-string) and reaches a DB execute() sink. Use parameterized queries.
+    options:
+      symbolic_propagation: true
+    metadata:
+      cwe: ["CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"]
+      owasp: ["A03:2021 - Injection"]
+      category: security
+      confidence: HIGH
+      references:
+        - https://owasp.org/Top10/A03_2021-Injection/
+    pattern-sources:
+      - patterns:
+          - pattern-either:
+              - pattern: $REQ.args.get(...)
+              - pattern: $REQ.form.get(...)
+              - pattern: $REQ.values.get(...)
+              - pattern: $REQ.GET.get(...)
+              - pattern: $REQ.json[...]
+    pattern-propagators:
+      - pattern: $S % $X
+        from: $X
+        to: $S
+      - pattern: $S.format(...)
+        from: $S
+        to: $S
+    pattern-sanitizers:
+      - pattern: int(...)
+      - pattern: $DB.objects.filter(...)
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: $CUR.execute($Q, ...)
+              - pattern: $CUR.executescript($Q, ...)
+              - pattern: $MODEL.objects.raw($Q, ...)
+              - pattern: $MODEL.objects.extra(...)
+          - focus-metavariable: $Q

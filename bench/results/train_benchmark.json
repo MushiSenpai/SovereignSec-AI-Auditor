@@ -1,0 +1,23 @@
+{
+  "model": "unsloth/Qwen2.5-Coder-32B-Instruct-bnb-4bit",
+  "dataset": "ft-rig/data/out/real_sft.jsonl",
+  "rows": 890,
+  "max_seq_len": 2048,
+  "max_steps": 120,
+  "lora_rank": 16,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "compute_capability": [
+    12,
+    0
+  ],
+  "torch": "2.10.0+cu128",
+  "torch_cuda": "12.8",
+  "load_time_s": 977.93,
+  "weights_vram_gib_4bit": 18.44,
+  "peak_vram_gib_training": 19.94,
+  "train_time_s": 256.94,
+  "train_samples_per_s": 1.878,
+  "train_steps_per_s": 0.47,
+  "final_loss": 0.5619,
+  "adapter": "out/real_adapter_32b"
+}

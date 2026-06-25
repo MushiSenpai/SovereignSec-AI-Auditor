@@ -1,0 +1,8 @@
+{
+  "label": "usercode32b",
+  "n": 9,
+  "composition": "3\u00d7CWE-78, 3\u00d7CWE-79, 3\u00d7CWE-89",
+  "bare_acc": 0.667,
+  "system_acc": 1.0,
+  "delta": 0.333
+}

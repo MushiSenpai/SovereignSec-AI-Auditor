@@ -1,0 +1,644 @@
+{
+  "base": {
+    "label": "base_pc",
+    "model_dir": "unsloth/Qwen2.5-Coder-32B-Instruct-bnb-4bit",
+    "n_pos": 30,
+    "n_neg": 30,
+    "TP": 30,
+    "FN": 0,
+    "FP": 0,
+    "TN": 30,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "eval_file": "ft-rig/data/out/postcutoff_eval.jsonl",
+    "eval_time_s": 273.5,
+    "sec_per_audit": 4.56,
+    "samples": [
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Potential Incomplete Tag Stripping\",\n  \"description\": \"The `strip_tags` function in `django/html.py` is designed to remove all HTML tags from a given string. However, the implementation relies on the `_strip_once` function, which may not handle all edge cases of HTML pa"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Tainted Data Handling\",\n  \"description\": \"The provided code snippet is from the Django framework's initialization method. The code sets the 'blank' attribute to True in the kwargs dictionary without any validation or sanitization of the input arguments. This could poten"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"finding\": {\n    \"issue\": \"Potential Misconfiguration in Model Field Deconstruction\",\n    \"description\": \"The `deconstruct` method in the provided Django model field initialization file is modifying the `kwargs` dictionary to remove the `blank` attribute and set `primary_key` to `True`. "
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Potential Taint Injection in JSON Parsing\",\n  \"description\": \"The `to_python` method in `django/fields.py` attempts to parse the input `value` using `json.loads`. If the input is not one of the predefined types (list, dict, int, float, JSONString) and is not empty, it i"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Tainted Input Handling\",\n  \"description\": \"The __init__ method in django/fields.py accepts 'encoder' and 'decoder' parameters which are directly assigned to instance variables without any validation or sanitization. If these parameters are derived from user input, they "
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"findings\": [\n    {\n      \"issue\": \"Potential Taint Injection\",\n      \"description\": \"The function `clean_ipv6_address` takes an input `ip_str` which is expected to be a valid IPv6 address. However, there is no explicit validation or sanitization of this input before it is passed to `ipa"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"file\": \"django/ipv6.py\",\n  \"function\": \"is_valid_ipv6_address\",\n  \"taint_analysis\": {\n    \"input\": {\n      \"name\": \"ip_str\",\n      \"type\": \"string\",\n      \"description\": \"The input string that is supposed to represent an IPv6 address.\"\n    },\n    \"process\": {\n      \"description\": \"The f"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Tainted Data Handling\",\n  \"description\": \"The provided code snippet is from the Django framework's initialization method. The code sets the 'blank' attribute to True in the kwargs dictionary without any validation or sanitization of the input arguments. This could poten"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"finding\": {\n    \"issue\": \"Potential Misconfiguration in Model Field Deconstruction\",\n    \"description\": \"The `deconstruct` method in the provided Django model field initialization file is modifying the `kwargs` dictionary to remove the `blank` attribute and set `primary_key` to `True`. "
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Potential Taint Injection in JSON Parsing\",\n  \"description\": \"The `to_python` method in `django/fields.py` attempts to parse the input `value` using `json.loads`. If the input is not one of the predefined types (list, dict, int, float, JSONString) and is not empty, it i"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Tainted Input Handling\",\n  \"description\": \"The __init__ method in django/fields.py accepts 'encoder' and 'decoder' parameters which are directly assigned to instance variables without any validation or sanitization. If these parameters are derived from user input, they "
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"findings\": [\n    {\n      \"issue\": \"Potential Insecure Conversion\",\n      \"description\": \"The function converts the input IP address string to an integer using `int(ipaddress.IPv6Address(ip_str))` and then back to an IPv6Address object. This conversion might inadvertently allow certain m"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"file\": \"django/ipv6.py\",\n  \"function\": \"is_valid_ipv6_address\",\n  \"taint_analysis\": {\n    \"input\": {\n      \"name\": \"ip_str\",\n      \"type\": \"string\",\n      \"description\": \"The input string that is supposed to represent an IPv6 address.\"\n    },\n    \"process\": {\n      \"description\": \"The f"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Tainted Data Handling\",\n  \"description\": \"The provided code snippet is from the Django framework's initialization method. The code sets the 'blank' attribute to True in the kwargs dictionary without any validation or sanitization of the input arguments. This could poten"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"finding\": {\n    \"issue\": \"Potential Misconfiguration in Model Field Deconstruction\",\n    \"description\": \"The `deconstruct` method in the provided Django model field initialization file is modifying the `kwargs` dictionary to remove the `blank` attribute and set `primary_key` to `True`. "
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Potential Taint Injection in JSON Parsing\",\n  \"description\": \"The `to_python` method in `django/fields.py` attempts to parse the input `value` using `json.loads`. If the input is not one of the predefined types (list, dict, int, float, JSONString) and is not empty, it i"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Tainted Input Handling\",\n  \"description\": \"The __init__ method in django/fields.py accepts 'encoder' and 'decoder' parameters which are directly assigned to instance variables without any validation or sanitization. If these parameters are derived from user input, they "
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"findings\": [\n    {\n      \"issue\": \"Potential Taint Injection\",\n      \"description\": \"The function `clean_ipv6_address` takes an input `ip_str` which is expected to be a valid IPv6 address. However, there is no explicit validation or sanitization of this input before it is passed to `ipa"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"file\": \"django/ipv6.py\",\n  \"function\": \"is_valid_ipv6_address\",\n  \"taint_analysis\": {\n    \"input\": {\n      \"name\": \"ip_str\",\n      \"type\": \"string\",\n      \"description\": \"The input string that is supposed to represent an IPv6 address.\"\n    },\n    \"process\": {\n      \"description\": \"The f"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Tainted Data Handling\",\n  \"description\": \"The provided code snippet is from the Django framework's initialization method. The code sets the 'blank' attribute to True in the kwargs dictionary without any validation or sanitization of the input arguments. This could poten"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"finding\": {\n    \"issue\": \"Potential Misconfiguration in Model Field Deconstruction\",\n    \"description\": \"The `deconstruct` method in the provided Django model field initialization file is modifying the `kwargs` dictionary to remove the `blank` attribute and set `primary_key` to `True`. "
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Potential Taint Injection in JSON Parsing\",\n  \"description\": \"The `to_python` method in `django/fields.py` attempts to parse the input `value` using `json.loads`. If the input is not one of the predefined types (list, dict, int, float, JSONString) and is not empty, it i"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Tainted Input Handling\",\n  \"description\": \"The __init__ method in django/fields.py accepts 'encoder' and 'decoder' parameters which are directly assigned to instance variables without any validation or sanitization. If these parameters are derived from user input, they "
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"findings\": [\n    {\n      \"issue\": \"Potential Insecure Conversion\",\n      \"description\": \"The function converts the input IP address string to an integer using `int(ipaddress.IPv6Address(ip_str))` and then back to an IPv6Address object. This conversion might inadvertently allow certain m"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"file\": \"django/ipv6.py\",\n  \"function\": \"is_valid_ipv6_address\",\n  \"taint_analysis\": {\n    \"input\": {\n      \"name\": \"ip_str\",\n      \"type\": \"string\",\n      \"description\": \"The input string that is supposed to represent an IPv6 address.\"\n    },\n    \"process\": {\n      \"description\": \"The f"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Path Traversal\",\n  \"description\": \"The function `target_filename` in `django/archive.py` is vulnerable to path traversal attacks. The issue arises because the function does not properly sanitize the `name` parameter before joining it with `target_path`. An attacker coul"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"SQL Injection Risk\",\n  \"description\": \"The test cases in the function `test_alias_forbidden_chars` ensure that certain forbidden characters are not allowed in column aliases when using Django's ORM. However, if these checks are bypassed or if similar validation is not a"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"SQL Injection Risk\",\n  \"description\": \"The test cases in the function `test_alias_forbidden_chars` ensure that certain forbidden characters are not allowed in column aliases when using Django's ORM. However, if these checks are bypassed or if similar validation is not a"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"SQL Injection Risk\",\n  \"description\": \"The test cases in the function `test_alias_forbidden_chars` ensure that certain forbidden characters are not allowed in column aliases when using Django's ORM. However, if these checks are bypassed or if similar validation is not a"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"vulnerability\": \"Taint Injection\",\n  \"description\": \"The provided code snippet initializes an object with a `relation_name` and a `condition`. While there are checks to ensure that `relation_name` is not empty and `condition` is an instance of `Q`, there is no sanitization or validation"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided `strip_tags` function appears to be designed to safely strip HTML tags from a given string while preventing potential infinite loops or excessive processing by limiting the depth of tag stripping operations. Here are the key points that support this assessment:\n\n1. **Dep"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet does not contain any obvious security vulnerabilities. The `__init__` method initializes an object with parameters for IP address validation, setting up default validators based on the specified protocol and whether to unpack IPv4 addresses. The use of `vali"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/__init__.py` appears to be part of a method that is responsible for deconstructing an object into a form that can be serialized or reconstructed later. The method `deconstruct` is carefully handling the inclusion of certain attributes (`unpack_i"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/fields.py` appears to be handling the conversion of input values to a Python object, specifically for IP address fields. Here's a breakdown of the code:\n\n1. **Empty Values Check**: The function first checks if the input `value` is in the list of"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "No finding\n\nThe provided code snippet does not contain any obvious security vulnerabilities. It initializes an object with parameters for IP address validation, setting default values where necessary and passing additional keyword arguments to the superclass constructor. The use of `validators.ip_ad"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe `clean_ipv6_address` function appears to handle IPv6 addresses safely by validating the input and raising a `ValidationError` if the address is invalid. It also compresses the address by replacing the longest sequence of zeros with \"::\" and ensures that all hextets are in lowerca"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided function `is_valid_ipv6_address` appears to be safely checking the validity of an IPv6 address by attempting to convert the input string using an internal function `_ipv6_address_from_str`. If this conversion raises a `ValueError`, it returns `False`, indicating the stri"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet does not contain any obvious security vulnerabilities. It initializes an object with parameters for IP address validation, sets up default validators based on the specified protocol and IPv4 unpacking flag, and ensures that the maximum length for an IPv6 add"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/__init__.py` appears to be part of a method that is responsible for deconstructing an object into a form that can be serialized or reconstructed later. The method `deconstruct` is carefully handling the inclusion of certain attributes (`unpack_i"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/fields.py` appears to be handling the conversion of input values to a Python object, specifically for IP address fields. Here's a breakdown of the code:\n\n1. **Empty Values Check**: The function first checks if the input `value` is in the list of"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/fields.py` appears to be initializing an IP address field with specific parameters for protocol and IPv4 unpacking. The code sets default values and validators based on the input parameters and then calls the superclass's `__init__` method with "
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe `clean_ipv6_address` function appears to handle IPv6 addresses safely by validating the input and raising a `ValidationError` if the address is invalid. It also compresses the address by replacing the longest sequence of zeros with \"::\" and ensures that all hextets are in lowerca"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided function `is_valid_ipv6_address` appears to be safely checking the validity of an IPv6 address by attempting to convert the input string using an internal function `_ipv6_address_from_str`. If this conversion raises a `ValueError`, it returns `False`, indicating the stri"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet does not contain any obvious security vulnerabilities. The `__init__` method initializes an object with parameters for IP address validation, setting up default validators based on the specified protocol and whether to unpack IPv4 addresses. The use of `vali"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/__init__.py` appears to be part of a method that is responsible for deconstructing an object into a form that can be serialized or reconstructed later. The method `deconstruct` is carefully handling the inclusion of certain attributes (`unpack_i"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/fields.py` appears to be handling the conversion of input values to a Python object, specifically for IP address fields. Here's a breakdown of the code:\n\n1. **Empty Values Check**: The function first checks if the input `value` is in the list of"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "No finding\n\nThe provided code snippet does not contain any obvious security vulnerabilities. It initializes an object with parameters for IP address validation, setting default values where necessary and passing additional keyword arguments to the superclass constructor. The use of `validators.ip_ad"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe `clean_ipv6_address` function appears to handle IPv6 addresses safely by validating the input and raising a `ValidationError` if the address is invalid. It also compresses the address by replacing the longest sequence of zeros with \"::\" and ensures that all hextets are in lowerca"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided function `is_valid_ipv6_address` appears to be safely checking the validity of an IPv6 address by attempting to convert the input string using an internal function `_ipv6_address_from_str`. If this conversion raises a `ValueError`, it returns `False`, indicating the stri"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet does not contain any obvious security vulnerabilities. It initializes an object with parameters for IP address validation, sets up default validators based on the specified protocol and IPv4 unpacking flag, and ensures that the maximum length for an IPv6 add"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/__init__.py` appears to be part of a method that is responsible for deconstructing an object into a form that can be serialized or reconstructed later. The method `deconstruct` is carefully handling the inclusion of certain attributes (`unpack_i"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/fields.py` appears to be handling the conversion of input values to a Python object, specifically for IP address fields. Here's a breakdown of the code:\n\n1. **Empty Values Check**: The function first checks if the input `value` is in the list of"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/fields.py` appears to be initializing an IP address field with specific parameters for protocol and IPv4 unpacking. The code sets default values and validators based on the input parameters and then calls the superclass's `__init__` method with "
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe `clean_ipv6_address` function appears to handle IPv6 addresses safely by validating the input and raising a `ValidationError` if the address is invalid. It also compresses the address by replacing the longest sequence of zeros with \"::\" and ensures that all hextets are in lowerca"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided function `is_valid_ipv6_address` appears to be safely checking the validity of an IPv6 address by attempting to convert the input string using an internal function `_ipv6_address_from_str`. If this conversion raises a `ValueError`, it returns `False`, indicating the stri"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet appears to be safely handling the construction of file paths and checking for potential path traversal attacks. Here's a breakdown of why:\n\n1. **Absolute Path Calculation**: The `os.path.abspath` function is used to convert both `to_path` and the constructed"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided test function `test_alias_forbidden_chars` in `django/tests.py` appears to be correctly testing for the presence of forbidden characters in column aliases within Django ORM queries. The test checks for various characters and patterns that could lead to SQL injection or o"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided test function `test_alias_forbidden_chars` in `django/tests.py` appears to be correctly testing for the presence of forbidden characters in column aliases within Django ORM queries. The test checks for various characters and patterns that could lead to SQL injection or o"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided test function `test_alias_forbidden_chars` in `django/tests.py` appears to be correctly testing for the presence of forbidden characters in column aliases within Django ORM queries. The test checks for various characters and patterns that could lead to SQL injection or o"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "**No Finding**\n\nThe provided code snippet from `django/query_utils.py` appears to be safe. Here's the reasoning:\n\n1. **Input Validation**: The method checks if `_connector` is within the allowed set of connectors (`self.connectors`). If not, it raises a `ValueError`. This prevents invalid values fro"
+      }
+    ]
+  },
+  "ft": {
+    "label": "ft_pc",
+    "model_dir": "out/real_adapter_32b",
+    "n_pos": 30,
+    "n_neg": 30,
+    "TP": 30,
+    "FN": 0,
+    "FP": 0,
+    "TN": 30,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "eval_file": "ft-rig/data/out/postcutoff_eval.jsonl",
+    "eval_time_s": 87.2,
+    "sec_per_audit": 1.45,
+    "samples": [
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-79\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-79\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-1333\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-79\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-1333\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-79\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-1333\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-79\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-1333\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-22\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-89\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-89\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-89\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-89\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-79\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-22\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-89\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-89\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-89\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      },
+      {
+        "is_pos": false,
+        "flagged": false,
+        "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-89\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+      }
+    ]
+  },
+  "delta": {
+    "recall": 0.0,
+    "precision": 0.0
+  }
+}

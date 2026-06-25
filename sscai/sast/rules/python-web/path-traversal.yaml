@@ -1,0 +1,40 @@
+# SovereignSec-AI — path traversal (CWE-22). Coverage push: user input -> filesystem path.
+rules:
+  - id: sovsec-python-path-traversal
+    mode: taint
+    severity: ERROR
+    languages: [python]
+    message: >
+      User-controlled input flows into a filesystem path (path traversal). Use
+      werkzeug.utils.secure_filename or os.path.basename and confine to a base dir.
+    metadata:
+      cwe: ["CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')"]
+      owasp: ["A01:2021 - Broken Access Control"]
+      category: security
+      confidence: HIGH
+    pattern-sources:
+      - patterns:
+          - pattern-either:
+              - pattern: $REQ.args.get(...)
+              - pattern: $REQ.form.get(...)
+              - pattern: $REQ.values.get(...)
+              - pattern: $REQ.GET.get(...)
+              - pattern: $REQ.POST.get(...)
+              - pattern: $REQ.json[...]
+              - pattern: $REQ.get_json(...)
+              - pattern: $REQ.view_args[...]
+    pattern-sanitizers:
+      - pattern: secure_filename(...)
+      - pattern: werkzeug.utils.secure_filename(...)
+      - pattern: os.path.basename(...)
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: open($P, ...)
+              - pattern: io.open($P, ...)
+              - pattern: codecs.open($P, ...)
+              - pattern: os.remove($P)
+              - pattern: os.path.join(..., $P, ...)
+              - pattern: send_file($P, ...)
+              - pattern: send_from_directory(..., $P, ...)
+          - focus-metavariable: $P

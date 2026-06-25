@@ -1,0 +1,38 @@
+# SovereignSec-AI — insecure deserialization (CWE-502). Coverage push.
+rules:
+  - id: sovsec-python-insecure-deserialization
+    mode: taint
+    severity: ERROR
+    languages: [python]
+    message: >
+      User-controlled input is deserialized with an unsafe loader (pickle / yaml.load /
+      marshal), enabling RCE. Use json, or yaml.safe_load, and never unpickle untrusted data.
+    metadata:
+      cwe: ["CWE-502: Deserialization of Untrusted Data"]
+      owasp: ["A08:2021 - Software and Data Integrity Failures"]
+      category: security
+      confidence: HIGH
+    pattern-sources:
+      - patterns:
+          - pattern-either:
+              - pattern: $REQ.args.get(...)
+              - pattern: $REQ.form.get(...)
+              - pattern: $REQ.values.get(...)
+              - pattern: $REQ.GET.get(...)
+              - pattern: $REQ.POST.get(...)
+              - pattern: $REQ.data
+              - pattern: $REQ.cookies.get(...)
+              - pattern: $REQ.json[...]
+              - pattern: $REQ.get_json(...)
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: pickle.loads($D)
+              - pattern: pickle.load($D)
+              - pattern: cPickle.loads($D)
+              - pattern: marshal.loads($D)
+              - pattern: yaml.load($D, ...)
+              - pattern: yaml.load($D)
+          - focus-metavariable: $D
+          - pattern-not: yaml.load(..., Loader=yaml.SafeLoader)
+          - pattern-not: yaml.load(..., Loader=SafeLoader)

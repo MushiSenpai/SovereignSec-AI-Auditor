@@ -1,0 +1,41 @@
+{
+  "_comment": "Ground truth for the seeded demo repo. Eval matches predicted findings on (file, cwe, line). Keep line numbers in sync with the source files.",
+  "findings": [
+    {
+      "id": "sqli-crossfile",
+      "file": "db.py",
+      "cwe": "CWE-89",
+      "line": 37,
+      "type": "sql_injection",
+      "severity": "high",
+      "taint_path": [
+        "app.py: user(): request.args.get('name')  [source]",
+        "services.py: user_lookup(username)  [propagation]",
+        "db.py: find_user(): query = \"... '%s'\" % username  [propagation]",
+        "db.py: cur.execute(query)  [sink]"
+      ],
+      "note": "Cross-file; Semgrep CE single-file taint cannot follow this — requires L1 call graph + L2 walk or the custom inter-proc taint worklist."
+    },
+    {
+      "id": "xss-reflected",
+      "file": "app.py",
+      "cwe": "CWE-79",
+      "line": 32,
+      "type": "reflected_xss",
+      "severity": "medium",
+      "taint_path": [
+        "app.py: greet(): request.args.get('name')  [source]",
+        "app.py: return '<h1>Hello ' + name + '</h1>'  [sink]"
+      ]
+    }
+  ],
+  "planted_false_positives": [
+    {
+      "id": "safe-parameterized",
+      "file": "db.py",
+      "function": "find_user_safe",
+      "line": 43,
+      "reason": "Parameterized query (cur.execute(sql, (username,))). A naive matcher that flags any cur.execute() will report this. L4 MUST drop it. Counts as a false positive if reported."
+    }
+  ]
+}

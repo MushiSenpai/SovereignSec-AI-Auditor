@@ -1,0 +1,15 @@
+{
+  "n": 5,
+  "per_file": {
+    "recall": 0.6,
+    "precision": 0.25,
+    "decoy_false_positives": 0,
+    "total_false_positives": 9
+  },
+  "system": {
+    "recall": 1.0,
+    "precision": 1.0,
+    "decoy_false_positives": 0,
+    "total_false_positives": 0
+  }
+}

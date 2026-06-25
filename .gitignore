@@ -1,0 +1,48 @@
+# venvs / caches
+.venv/
+.venv-train/
+.tmp/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# local DBs / scan artifacts
+*.db
+app.db
+*.sqlite
+
+# data moat outputs + mined corpora (the private moat — never commit bodies)
+ft-rig/data/out/
+data/out/
+*.jsonl.gz
+advdb/
+CVEfixes.db
+wheels/
+
+# model weights / adapters / exports (huge; live outside git)
+models/
+*.gguf
+*.safetensors
+out/
+loras/
+
+# benchmark raw captures (keep the summarized reports, not the raw streams)
+bench/results/*.raw
+bench/results/*.tmp
+
+# recordings (large media; keep tapes/scripts, not the rendered files)
+demo/recording/*.mp4
+demo/recording/*.gif
+demo/recording/*.webm
+demo/recording/*.cast
+
+# secrets / env
+.env
+*.key
+*.pem
+secrets/
+
+# build artifacts / internal business docs (not for public)
+unsloth_compiled_cache/
+SCOPE.md

@@ -1,0 +1,131 @@
+{
+  "target": "demo/seeded_repo",
+  "env": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-124-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "tree_sitter": "?",
+      "tree_sitter_python": "?",
+      "jedi": "0.20.0",
+      "networkx": "3.6.1",
+      "bandit": "1.9.4",
+      "semgrep": "?",
+      "torch": null,
+      "unsloth": null,
+      "trl": null,
+      "peft": null,
+      "bitsandbytes": null,
+      "transformers": null
+    }
+  },
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 5090",
+    "vram_total_mib": 32607,
+    "vram_used_mib": 2,
+    "driver": "595.80",
+    "cuda_driver": "13.2"
+  },
+  "latency": {
+    "L1 graph build (Jedi)": {
+      "label": "L1 graph build (Jedi)",
+      "runs": 5,
+      "min_s": 0.0747,
+      "median_s": 0.0777,
+      "mean_s": 0.1075,
+      "max_s": 0.2261,
+      "samples": [
+        0.0777,
+        0.0747,
+        0.2261,
+        0.0768,
+        0.0821
+      ]
+    },
+    "L1 inter-proc taint": {
+      "label": "L1 inter-proc taint",
+      "runs": 5,
+      "min_s": 0.0012,
+      "median_s": 0.0012,
+      "mean_s": 0.0012,
+      "max_s": 0.0013,
+      "samples": [
+        0.0013,
+        0.0012,
+        0.0012,
+        0.0013,
+        0.0012
+      ]
+    },
+    "L3 semgrep (our rules)": {
+      "label": "L3 semgrep (our rules)",
+      "runs": 3,
+      "min_s": 0.9085,
+      "median_s": 0.9125,
+      "mean_s": 0.9226,
+      "max_s": 0.9469,
+      "samples": [
+        0.9085,
+        0.9125,
+        0.9469
+      ]
+    },
+    "L3 bandit": {
+      "label": "L3 bandit",
+      "runs": 3,
+      "min_s": 0.0704,
+      "median_s": 0.0715,
+      "mean_s": 0.0716,
+      "max_s": 0.073,
+      "samples": [
+        0.073,
+        0.0715,
+        0.0704
+      ]
+    },
+    "L3 full scan (semgrep+bandit)": {
+      "label": "L3 full scan (semgrep+bandit)",
+      "runs": 3,
+      "min_s": 0.9999,
+      "median_s": 1.0028,
+      "mean_s": 1.0035,
+      "max_s": 1.0079,
+      "samples": [
+        0.9999,
+        1.0028,
+        1.0079
+      ]
+    },
+    "L5 dynamic oracle (n=3 runs)": {
+      "label": "L5 dynamic oracle (n=3 runs)",
+      "runs": 1,
+      "min_s": 1.168,
+      "median_s": 1.168,
+      "mean_s": 1.168,
+      "max_s": 1.168,
+      "samples": [
+        1.168
+      ]
+    }
+  },
+  "accuracy": {
+    "A_semgrep_ce_only": {
+      "P": 1.0,
+      "R": 0.5,
+      "F1": 0.667,
+      "fp_leak": false
+    },
+    "B_plus_bandit": {
+      "P": 1.0,
+      "R": 1.0,
+      "F1": 1.0,
+      "fp_leak": false
+    },
+    "C_plus_crossfile_taint": {
+      "P": 1.0,
+      "R": 1.0,
+      "F1": 1.0,
+      "fp_leak": false
+    },
+    "taint_paths_found": 1
+  }
+}

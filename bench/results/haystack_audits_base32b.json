@@ -1,0 +1,191 @@
+[
+  {
+    "cve": "CVE-2022-28347",
+    "cwe": "CWE-89",
+    "file_path": "tests/queries/test_explain.py",
+    "n_functions": 7,
+    "gt_functions": [
+      "test_invalid_option_names",
+      "test_option_sql_injection",
+      "test_unknown_options"
+    ],
+    "n_candidates": 1,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, improper input validation, or other common issues. The code primarily deals with testing the `explain` method of Django's ORM, which is used to analyze database queries. It includes checks for different formats (XML, JSON) and handles exceptions appropriately. There are no vulnerable functions that stand out based on the given content.",
+    "system_out": "After reviewing the provided code, there is no clear indication of a security vulnerability related to CWE-20 (Improper Input Validation) at line 47 or any other part of the file. CWE-20 typically involves issues where user input is not properly validated before being used, which could lead to injection attacks or other vulnerabilities.\n\nThe flagged line (line 47) is:\n```python\nresult = queryset.explain(format=format)\n```\nThis line does not directly handle user input, nor does it perform any ope"
+  },
+  {
+    "cve": "CVE-2020-7471",
+    "cwe": "CWE-89",
+    "file_path": "django/contrib/postgres/aggregates/general.py",
+    "n_functions": 5,
+    "gt_functions": [
+      "__init__"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, improper input validation, or other common issues. The functions and methods defined in this file are primarily related to database aggregation operations and do not handle user input directly or perform any operations that could lead to security vulnerabilities based on the given context.",
+    "system_out": "After carefully analyzing the provided code from `django/contrib/postgres/aggregates/general.py`, there are no obvious security vulnerabilities present in the functions defined here. The code primarily deals with database aggregation functions and does not involve any user input handling, external data processing, or other common sources of security issues like SQL injection, cross-site scripting (XSS), or command injection.\n\nThe `convert_value` methods in classes like `ArrayAgg`, `JSONBAgg`, an"
+  },
+  {
+    "cve": "CVE-2020-7471",
+    "cwe": "CWE-89",
+    "file_path": "django/contrib/postgres/aggregates/mixins.py",
+    "n_functions": 6,
+    "gt_functions": [
+      "__init__"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, improper input validation, or other common issues. The code primarily deals with handling ordering expressions in Django's PostgreSQL aggregate functions, and it appears to be correctly parsing and using these expressions.",
+    "system_out": "After carefully analyzing the provided code, there are no obvious security vulnerabilities such as SQL injection, improper input validation, or other common issues. The code appears to be handling expressions and ordering logic correctly within the context of Django's ORM.\n\nThe transformations and checks in the code seem to be designed to handle and validate the ordering expressions properly. There are no direct indications of vulnerabilities like CWE-89 (SQL Injection), CWE-78 (Improper Neutral"
+  },
+  {
+    "cve": "CVE-2020-9402",
+    "cwe": "CWE-89",
+    "file_path": "django/contrib/gis/db/models/aggregates.py",
+    "n_functions": 8,
+    "gt_functions": [
+      "as_oracle"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, improper input validation, or other common issues. The functions and methods appear to be handling database operations and spatial data correctly within the context of Django GIS.",
+    "system_out": "After carefully analyzing the provided code from `django/contrib/gis/db/models/aggregates.py`, there are no obvious security vulnerabilities present. The code primarily deals with GIS (Geographic Information System) aggregates in Django and does not contain any functions that handle user input directly or perform operations that could lead to common security issues such as SQL injection, cross-site scripting (XSS), or command injection.\n\nThe functions and methods defined in this file are focused"
+  },
+  {
+    "cve": "CVE-2025-64459",
+    "cwe": "CWE-89",
+    "file_path": "tests/queries/test_q.py",
+    "n_functions": 29,
+    "gt_functions": [
+      "test_connector_validation"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, improper input validation, or other common issues. The code is primarily focused on testing the behavior of Django's `Q` objects and their interactions, and it does not include any functions that directly handle user input or perform sensitive operations that could lead to security vulnerabilities.",
+    "system_out": "After carefully reviewing the provided code, there are no obvious security vulnerabilities that stand out. The code primarily deals with testing Django's `Q` objects and their behavior under various conditions. It does not handle user input directly or perform any operations that could lead to common security issues such as SQL injection, cross-site scripting (XSS), or insecure data handling.\n\nHowever, there is one potential concern related to the use of `RawSQL` in the `test_rawsql` method:\n\n``"
+  },
+  {
+    "cve": "CVE-2022-28346",
+    "cwe": "CWE-89",
+    "file_path": "tests/expressions/test_queryset_values.py",
+    "n_functions": 6,
+    "gt_functions": [
+      "test_values_expression_alias_sql_injection"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, cross-site scripting (XSS), or other common web application security issues. The code is primarily focused on testing Django ORM queries and does not handle user input or perform any operations that could lead to security vulnerabilities.",
+    "system_out": "After carefully analyzing the provided code, there are no obvious security vulnerabilities such as SQL injection, cross-site scripting (XSS), or other common web application security issues. The code primarily deals with Django ORM queries and assertions for testing purposes.\n\nThe functions used (`values`, `annotate`, `values_list`) are part of Django's ORM and are designed to be safe when used correctly. There are no user inputs being directly incorporated into the queries that could lead to in"
+  },
+  {
+    "cve": "CVE-2015-2317",
+    "cwe": "CWE-79",
+    "file_path": "django/utils/http.py",
+    "n_functions": 16,
+    "gt_functions": [
+      "is_safe_url"
+    ],
+    "n_candidates": 0,
+    "bare_out": "**No finding**\n\nThe provided code does not contain any obvious security vulnerabilities based on the functions and their usage. The functions handle encoding, decoding, and parsing in a way that appears to be secure given the context. There are no direct indications of SQL injection, cross-site scripting (XSS), or other common web application vulnerabilities. However, always ensure that the libraries and functions used (`urllib`, `urlparse`, etc.) are up-to-date and properly configured in your e",
+    "system_out": "After carefully analyzing the provided code, I did not find any obvious security vulnerabilities that would be classified under a specific CWE. The functions appear to handle URL encoding, decoding, date parsing, and other utility tasks in a way that seems to follow best practices for security.\n\nHowever, there are a few areas that could potentially be improved or are worth noting:\n\n1. **Use of `urllib` and `urlparse`**: These modules are from Python 2, which is no longer supported. If this code "
+  },
+  {
+    "cve": "CVE-2015-2317",
+    "cwe": "CWE-79",
+    "file_path": "tests/regressiontests/utils/http.py",
+    "n_functions": 5,
+    "gt_functions": [
+      "test_is_safe_url"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities. The functions being tested (`same_origin`, `urlencode`, `base36`, and `is_safe_url`) appear to be implemented correctly based on the test cases. There are no vulnerable functions that stand out in the given file.",
+    "system_out": "After carefully reviewing the provided code, there are no obvious security vulnerabilities that stand out based on the functions used and the tests performed. The code appears to be testing various utility functions from Django's `http` module, including `same_origin`, `urlencode`, `base36_to_int`, `int_to_base36`, and `is_safe_url`.\n\nHowever, there is one potential issue related to the use of `sys.maxint` in the `test_base36` method. In Python 3, `sys.maxint` has been removed and replaced with "
+  },
+  {
+    "cve": "CVE-2015-2317",
+    "cwe": "CWE-79",
+    "file_path": "tests/utils_tests/test_http.py",
+    "n_functions": 11,
+    "gt_functions": [
+      "test_is_safe_url"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, cross-site scripting (XSS), or other common issues. The functions being tested (`same_origin`, `urlencode`, `base36`, `is_safe_url`, `urlsafe_base64_roundtrip`, `parse_etags`, `quote_etag`, `parse_http_date`) appear to be handling their inputs appropriately within the context of the tests. There are no vulnerable function names, lines, or CWEs identified in the given file.",
+    "system_out": "After carefully reviewing the provided code, I did not find any obvious security vulnerabilities that would be classified under common CWEs such as injection flaws, improper input validation, or insecure data handling.\n\nThe functions in the file appear to be testing various utility functions from Django's `http` module, including `same_origin`, `urlencode`, `base36`, `is_safe_url`, `urlsafe_base64_encode`, `urlsafe_base64_decode`, `parse_etags`, `quote_etag`, `parse_http_date`, among others. The"
+  },
+  {
+    "cve": "CVE-2022-34265",
+    "cwe": "CWE-89",
+    "file_path": "tests/backends/base/test_operations.py",
+    "n_functions": 35,
+    "gt_functions": [
+      "test_date_extract_sql",
+      "test_date_trunc_sql",
+      "test_datetime_cast_date_sql",
+      "test_datetime_cast_time_sql",
+      "test_datetime_extract_sql",
+      "test_datetime_trunc_sql",
+      "test_time_extract_sql",
+      "test_time_trunc_sql"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code is a set of test cases for Django's database operations and does not contain any obvious security vulnerabilities. The functions being tested are primarily related to SQL generation and database interactions, and there are no indications of insecure coding practices such as SQL injection, improper input validation, or other common security issues. All operations seem to be properly encapsulated within the Django framework's safety features.",
+    "system_out": "After carefully reviewing the provided code, there are no obvious security vulnerabilities present. The code appears to be a set of unit tests for Django's database operations, and it primarily checks for expected behaviors and exceptions from various methods in the `BaseDatabaseOperations` class.\n\nThe code does not contain any functions that handle user input directly, perform file operations, execute shell commands, or interact with external systems in a way that could lead to common security "
+  },
+  {
+    "cve": "CVE-2022-22818",
+    "cwe": "CWE-79",
+    "file_path": "tests/template_tests/tests.py",
+    "n_functions": 16,
+    "gt_functions": [
+      "test_debug_tag_non_ascii"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, cross-site scripting (XSS), or other common issues. The code primarily deals with testing Django's template engine and handling various template-related exceptions, which do not inherently introduce security risks.",
+    "system_out": "After carefully analyzing the provided code, there are no obvious security vulnerabilities that stand out. The code primarily deals with Django template rendering and error handling, and it does not contain any functions that directly handle user input in an insecure manner, such as executing arbitrary code or improperly sanitizing inputs.\n\nHowever, there is one potential concern related to error handling and debugging information that could be considered a minor issue:\n\n### Potential Issue:\nIn "
+  },
+  {
+    "cve": "CVE-2019-14234",
+    "cwe": "CWE-89",
+    "file_path": "django/contrib/postgres/fields/hstore.py",
+    "n_functions": 11,
+    "gt_functions": [
+      "as_sql"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, cross-site scripting (XSS), or other common issues. The use of `json.loads` and `json.dumps` appears to be handled safely within the context of the Django framework, and there are no direct indications of improper input validation or handling that would lead to a security vulnerability.",
+    "system_out": "After carefully analyzing the provided code, there are no obvious security vulnerabilities that stand out. The code primarily deals with handling HStore fields in Django, which are essentially dictionaries stored in PostgreSQL.\n\nHowever, one potential concern could be related to the use of `json.loads` and `json.dumps` in the `to_python` and `value_to_string` methods, respectively. While these functions themselves are not inherently insecure, they can be problematic if the input data is not prop"
+  },
+  {
+    "cve": "CVE-2019-14234",
+    "cwe": "CWE-89",
+    "file_path": "django/contrib/postgres/fields/jsonb.py",
+    "n_functions": 15,
+    "gt_functions": [
+      "as_sql"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, cross-site scripting (XSS), or other common issues. The code primarily deals with handling JSON data in a Django application using PostgreSQL's JSONB field type. It includes proper validation and error handling for JSON data, which helps prevent issues related to malformed JSON input.",
+    "system_out": "After carefully analyzing the provided code, there are no obvious security vulnerabilities that stand out. The code primarily deals with handling JSON data in Django using PostgreSQL's JSONB field type. Here are some points to consider:\n\n1. **Input Validation**: The `validate` method in the `JSONField` class ensures that the input value is valid JSON by attempting to serialize it using `json.dumps`. This helps prevent invalid JSON data from being stored.\n\n2. **Custom Encoder**: The `JsonAdapter`"
+  },
+  {
+    "cve": "CVE-2019-14234",
+    "cwe": "CWE-89",
+    "file_path": "tests/postgres_tests/test_hstore.py",
+    "n_functions": 40,
+    "gt_functions": [
+      "test_key_sql_injection"
+    ],
+    "n_candidates": 0,
+    "bare_out": "No finding.\n\nThe provided code does not contain any obvious security vulnerabilities such as SQL injection, cross-site scripting (XSS), or other common issues. The code primarily deals with testing Django's HStoreField functionality, including serialization, validation, and querying, and does not appear to have any vulnerable functions that could lead to security issues based on the given content.",
+    "system_out": "After carefully reviewing the provided code, there are no obvious security vulnerabilities that stand out. The code primarily deals with testing Django's HStoreField functionality, including serialization, validation, and querying. Here are some points to consider:\n\n1. **JSON Handling**: The code uses `json.loads()` and `json.dumps()` for serialization and deserialization. However, these functions are used safely within the context of the tests, and there are no user inputs being directly passed"
+  },
+  {
+    "cve": "CVE-2008-2302",
+    "cwe": "CWE-79",
+    "file_path": "django/contrib/admin/views/decorators.py",
+    "n_functions": 5,
+    "gt_functions": [
+      "_display_login_form"
+    ],
+    "n_candidates": 0,
+    "bare_out": "### Vulnerability Report\n\n**VULNERABLE FUNCTION:** `_decode_post_data`\n\n**LINE:** 31 (`return pickle.loads(pickled)`)\n\n**CWE:** CWE-502: Deserialization of Untrusted Data\n\n### Explanation:\n\nThe function `_decode_post_data` uses the `pickle` module to deserialize data received from the client. This is highly insecure because `pickle` can execute arbitrary code during deserialization if the data has been tampered with. An attacker could craft malicious data that, when deserialized, would execute a",
+    "system_out": "Upon manual analysis, the code contains a significant security vulnerability related to the use of `pickle` for serializing and deserializing data. This can lead to arbitrary code execution if an attacker is able to manipulate the serialized data.\n\n### Vulnerable Function:\n- **Function Name:** `_decode_post_data`\n- **Line:** 37 (where `pickle.loads(pickled)` is called)\n- **CWE:** CWE-502: Deserialization of Untrusted Data\n\n### Explanation:\nThe function `_decode_post_data` uses `pickle.loads()` t"
+  }
+]

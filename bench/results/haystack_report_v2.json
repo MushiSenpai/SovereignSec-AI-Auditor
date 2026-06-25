@@ -1,0 +1,12 @@
+{
+  "label": "v2",
+  "n": 29,
+  "composition": "5\u00d7CWE-22, 5\u00d7CWE-502, 5\u00d7CWE-78, 5\u00d7CWE-79, 5\u00d7CWE-89, 4\u00d7CWE-918",
+  "bare_acc": 0.897,
+  "oneshot_acc": 0.793,
+  "agentic_acc": 0.414,
+  "hybrid_acc": 0.931,
+  "agentic_precision": 0.765,
+  "hybrid_precision": 0.61,
+  "hybrid_system_confirmed": 17
+}

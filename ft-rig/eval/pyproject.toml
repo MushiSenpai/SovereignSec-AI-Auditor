@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sscai-eval"
+version = "0.0.1"
+description = "SovereignSec-AI evaluation harness — the ablation-ladder + anti-contamination spine."
+requires-python = ">=3.10"
+dependencies = [
+    "rich>=13",
+    "pydantic>=2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.setuptools]
+packages = ["sscai_eval"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

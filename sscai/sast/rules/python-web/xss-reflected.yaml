@@ -1,0 +1,46 @@
+# SovereignSec-AI — reflected XSS (CWE-79). Single-file taint (source+sink in the
+# same view), which Semgrep CE handles. IMPL_SPEC §2. Validate: `semgrep --validate`.
+rules:
+  - id: sovsec-python-reflected-xss-return
+    mode: taint
+    severity: WARNING
+    languages: [python]
+    message: >
+      User-controlled input is returned in an HTTP response without escaping
+      (reflected XSS). Escape with markupsafe.escape / render a template with
+      autoescaping instead of building HTML by string concatenation.
+    metadata:
+      cwe: ["CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')"]
+      owasp: ["A03:2021 - Injection"]
+      category: security
+      confidence: MEDIUM
+    pattern-sources:
+      - patterns:
+          - pattern-either:
+              - pattern: $REQ.args.get(...)
+              - pattern: $REQ.form.get(...)
+              - pattern: $REQ.values.get(...)
+              - pattern: $REQ.GET.get(...)
+    pattern-sanitizers:
+      - pattern: markupsafe.escape(...)
+      - pattern: escape(...)
+      - pattern: int(...)
+    # Sink = tainted data flowing into a STRING response (HTML), not a dict/JSON
+    # return (Flask auto-encodes dicts to JSON -> not XSS). Narrowing to string
+    # concatenation / f-strings kills the JSON-dict false positives we first hit.
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: return $S + $T
+              - pattern: 'return f"..."'
+              - pattern: return "...".format(...)
+              - pattern: 'return "...".__mod__(...)'
+              - pattern: make_response($SINK, ...)
+              - pattern: HttpResponse($SINK, ...)
+              - pattern: render_template_string($SINK, ...)
+              - pattern: Markup($SINK)
+              - pattern: markupsafe.Markup($SINK)
+              - pattern: Response($SINK, ...)
+              - pattern: flask.Response($SINK, ...)
+              - pattern: HttpResponse("..." % $SINK)
+              - pattern: 'return "..." % $SINK'

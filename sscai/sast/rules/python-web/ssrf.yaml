@@ -1,0 +1,44 @@
+# SovereignSec-AI — SSRF (CWE-918). Coverage push: user-controlled URL -> server request.
+rules:
+  - id: sovsec-python-ssrf
+    mode: taint
+    severity: ERROR
+    languages: [python]
+    message: >
+      User-controlled input flows into a server-side HTTP request (SSRF). Validate the
+      destination against an allowlist of hosts/schemes before fetching.
+    metadata:
+      cwe: ["CWE-918: Server-Side Request Forgery (SSRF)"]
+      owasp: ["A10:2021 - Server-Side Request Forgery"]
+      category: security
+      confidence: HIGH
+    pattern-sources:
+      - patterns:
+          - pattern-either:
+              - pattern: $REQ.args.get(...)
+              - pattern: $REQ.form.get(...)
+              - pattern: $REQ.values.get(...)
+              - pattern: $REQ.GET.get(...)
+              - pattern: $REQ.POST.get(...)
+              - pattern: $REQ.json[...]
+              - pattern: $REQ.get_json(...)
+              - pattern: $REQ.json
+              - pattern: $REQ.data
+    pattern-sanitizers:
+      - pattern: urllib.parse.urlparse(...)
+      - patterns:
+          - pattern: $X
+          - metavariable-regex: { metavariable: $X, regex: "^https?://(api\\.internal|localhost)" }
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: requests.get($U, ...)
+              - pattern: requests.post($U, ...)
+              - pattern: requests.request(..., $U, ...)
+              - pattern: requests.head($U, ...)
+              - pattern: urllib.request.urlopen($U, ...)
+              - pattern: urllib.request.Request($U, ...)
+              - pattern: httpx.get($U, ...)
+              - pattern: httpx.post($U, ...)
+              - pattern: aiohttp.ClientSession(...).get($U, ...)
+          - focus-metavariable: $U

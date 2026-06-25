@@ -1,0 +1,84 @@
+[
+  {
+    "app": "app0_fetch",
+    "cwe": "CWE-918",
+    "gt_function": "fetch_user_link",
+    "decoy_functions": [
+      "refresh_status_board",
+      "sync_exchange_rates"
+    ],
+    "system_flagged": [
+      "fetch_user_link"
+    ],
+    "perfile_flagged": [
+      "preview_link",
+      "preview_view"
+    ]
+  },
+  {
+    "app": "app1_storage",
+    "cwe": "CWE-22",
+    "gt_function": "read_user_file",
+    "decoy_functions": [
+      "load_app_config",
+      "read_license"
+    ],
+    "system_flagged": [
+      "read_user_file"
+    ],
+    "perfile_flagged": [
+      "doc_view",
+      "open_doc"
+    ]
+  },
+  {
+    "app": "app2_cache",
+    "cwe": "CWE-502",
+    "gt_function": "load_user_blob",
+    "decoy_functions": [
+      "load_model",
+      "load_warm_cache"
+    ],
+    "system_flagged": [
+      "load_user_blob"
+    ],
+    "perfile_flagged": [
+      "load_session",
+      "load_user_blob"
+    ]
+  },
+  {
+    "app": "app3_db",
+    "cwe": "CWE-89",
+    "gt_function": "find_by_name",
+    "decoy_functions": [
+      "stats_by_level",
+      "recent_signups"
+    ],
+    "system_flagged": [
+      "find_by_name"
+    ],
+    "perfile_flagged": [
+      "find_by_name",
+      "lookup_user",
+      "user_view"
+    ]
+  },
+  {
+    "app": "app4_ops",
+    "cwe": "CWE-78",
+    "gt_function": "ping_target",
+    "decoy_functions": [
+      "rotate_logs",
+      "backup_db"
+    ],
+    "system_flagged": [
+      "ping_target"
+    ],
+    "perfile_flagged": [
+      "network_probe",
+      "ping_target",
+      "probe_view"
+    ]
+  }
+]

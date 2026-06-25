@@ -1,0 +1,12 @@
+{
+  "label": "v2cov",
+  "n": 29,
+  "composition": "5\u00d7CWE-22, 5\u00d7CWE-502, 5\u00d7CWE-78, 5\u00d7CWE-79, 5\u00d7CWE-89, 4\u00d7CWE-918",
+  "bare_acc": 0.897,
+  "oneshot_acc": 0.759,
+  "agentic_acc": 0.69,
+  "hybrid_acc": 0.966,
+  "agentic_precision": 0.605,
+  "hybrid_precision": 0.509,
+  "hybrid_system_confirmed": 38
+}

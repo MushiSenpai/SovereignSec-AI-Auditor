@@ -1,0 +1,8 @@
+{
+  "label": "base32b",
+  "n": 15,
+  "composition": "5\u00d7CWE-79, 10\u00d7CWE-89",
+  "bare_acc": 0.067,
+  "system_acc": 0.067,
+  "delta": 0.0
+}

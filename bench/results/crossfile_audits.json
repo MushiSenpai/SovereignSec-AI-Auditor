@@ -1,0 +1,67 @@
+[
+  {
+    "app": "app0_db",
+    "cwe": "CWE-89",
+    "gt_file": "db.py",
+    "gt_function": "run_user_query",
+    "system_found": true,
+    "system_path": "user_view -> lookup_user() [arg 0] @L21 -> run_user_query() [arg 0] @L15 -> run_user_query",
+    "per_file": {
+      "services.py": "### Vulnerable Function: `lookup_user`\n### CWE: CWE-89: SQL Injection\n\n**Explanation:**\nThe `lookup_user` function takes user input (`value`) and directly passes it to the `run_user_query` function without any form of validation or sanitization. This can lead to SQL injection if the `run_user_query` function constructs SQL queries using this input.",
+      "routes.py": "In the provided `routes.py` file, there is a potential security vulnerability in the `user_view` function. The issue arises from the use of user-controlled input without proper validation or sanitization before passing it to the `lookup_user` function.\n\n### Vulnerable Function: `user_view`\n### CWE: CWE-79 - Improper Neutralization of Input During W",
+      "db.py": "**Finding:**\n\n- **Vulnerable Function:** `run_user_query`\n- **CWE:** CWE-89: SQL Injection\n\n**Explanation:**\nThe `run_user_query` function constructs an SQL query using string interpolation (`%s`), which can be exploited if the `name` parameter contains malicious SQL code. This is a classic example of SQL injection vulnerability (CWE-89). An attack"
+    }
+  },
+  {
+    "app": "app1_ops",
+    "cwe": "CWE-78",
+    "gt_file": "ops.py",
+    "gt_function": "probe_host",
+    "system_found": true,
+    "system_path": "probe_view -> network_probe() [arg 0] @L21 -> probe_host() [arg 0] @L15 -> probe_host",
+    "per_file": {
+      "services.py": "In the provided `services.py` file, the function `network_probe` is passing user input directly to the `probe_host` function without any validation or sanitization. This can lead to security vulnerabilities if `probe_host` performs operations that can be influenced by malicious input.\n\n### Vulnerable Function: `network_probe`\n### CWE: CWE-94: Impro",
+      "ops.py": "### Finding:\n\n**Vulnerable Function:** `probe_host`\n\n**CWE:** CWE-78: OS Command Injection\n\n### Explanation:\nThe `probe_host` function constructs a shell command by concatenating user input (`host`) directly into the command string passed to `os.system`. This can lead to OS command injection if an attacker provides a maliciously crafted `host` valu",
+      "routes.py": "### Vulnerable Function: `network_probe`\n### CWE: CWE-78: OS Command Injection\n\n**Explanation:**\nThe `probe_view` function retrieves a user-controlled input from the query parameter `q` and passes it directly to the `network_probe` function. If `network_probe` executes this input as part of an OS command (e.g., using `subprocess.call`, `os.system`,"
+    }
+  },
+  {
+    "app": "app2_fetch",
+    "cwe": "CWE-918",
+    "gt_file": "fetch.py",
+    "gt_function": "fetch_preview",
+    "system_found": true,
+    "system_path": "preview_view -> preview_link() [arg 0] @L21 -> fetch_preview() [arg 0] @L15 -> fetch_preview",
+    "per_file": {
+      "services.py": "In the provided `services.py` file, the function `preview_link` is passing user input directly to the `fetch_preview` function without any validation or sanitization. This can lead to security vulnerabilities if `fetch_preview` performs operations that are sensitive to the input, such as making network requests or executing commands.\n\n### Vulnerabl",
+      "routes.py": "In the provided `routes.py` file, there is a potential security vulnerability in the `preview_view` function. The issue arises from the use of user-controlled input without proper validation or sanitization before it is passed to the `preview_link` function.\n\n### Vulnerable Function: `preview_view`\n### CWE: CWE-79: Improper Neutralization of Input ",
+      "fetch.py": "### Finding:\n\n**Vulnerable Function:** `fetch_preview`\n\n**CWE:** CWE-918: Server-Side Request Forgery (SSRF)\n\n### Explanation:\n\nThe `fetch_preview` function takes a URL as an input parameter and makes an HTTP GET request to that URL using the `requests.get` method. This can be exploited by an attacker to make the server send requests to internal ne"
+    }
+  },
+  {
+    "app": "app3_files",
+    "cwe": "CWE-22",
+    "gt_file": "files.py",
+    "gt_function": "read_document",
+    "system_found": true,
+    "system_path": "doc_view -> open_doc() [arg 0] @L21 -> read_document() [arg 0] @L15 -> read_document",
+    "per_file": {
+      "services.py": "In the provided `services.py` file, the function `open_doc` is passing user input directly to the `read_document` function without any validation or sanitization. This can lead to a security vulnerability known as **Path Traversal**.\n\n### Vulnerable Function:\n- **Function**: `open_doc`\n- **CWE**: CWE-22: Improper Limitation of a Pathname to a Restr",
+      "routes.py": "In the provided `routes.py` file, there is a potential security vulnerability in the `doc_view` function. The issue arises from the use of user-controlled input (`value`) without proper validation or sanitization before passing it to the `open_doc` function.\n\n### Vulnerable Function: `doc_view`\n### CWE: CWE-78: Improper Neutralization of Special El",
+      "files.py": "### Vulnerable Function: `read_document`\n### CWE: CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')\n\n**Explanation:**\nThe `read_document` function constructs a file path by concatenating a user-provided filename (`fname`) directly to a base directory (`/srv/docs/`). This can lead to a path traversal attack if an"
+    }
+  },
+  {
+    "app": "app4_cache",
+    "cwe": "CWE-502",
+    "gt_file": "cache.py",
+    "gt_function": "restore_session",
+    "system_found": true,
+    "system_path": "session_view -> load_session() [arg 0] @L21 -> restore_session() [arg 0] @L15 -> restore_session",
+    "per_file": {
+      "services.py": "In the provided `services.py` file, the `load_session` function is passing user input directly to the `restore_session` function without any validation or sanitization. This can lead to security vulnerabilities if `restore_session` interacts with external systems or performs operations based on the input.\n\n### Vulnerable Function: `load_session`\n##",
+      "routes.py": "In the provided `routes.py` file, there is a potential security vulnerability in the `session_view` function. The issue arises from the way user input is handled and passed to the `load_session` function.\n\n### Vulnerable Function: `session_view`\n- **CWE**: CWE-94: Improper Control of Generation of Code ('Code Injection')\n- **Description**: The `req",
+      "cache.py": "**Finding:**\n\n- **Vulnerable Function:** `restore_session`\n- **CWE:** CWE-502: Deserialization of Untrusted Data\n\n**Explanation:**\nThe use of `pickle.loads()` to deserialize data from an untrusted source (`blob`) is highly insecure. An attacker could craft a malicious payload that, when deserialized, can execute arbitrary code on the server. This i"
+    }
+  }
+]

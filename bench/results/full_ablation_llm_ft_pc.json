@@ -1,0 +1,319 @@
+{
+  "label": "ft_pc",
+  "model_dir": "out/real_adapter_32b",
+  "n_pos": 30,
+  "n_neg": 30,
+  "TP": 30,
+  "FN": 0,
+  "FP": 0,
+  "TN": 30,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "accuracy": 1.0,
+  "eval_file": "ft-rig/data/out/postcutoff_eval.jsonl",
+  "eval_time_s": 87.2,
+  "sec_per_audit": 1.45,
+  "samples": [
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-79\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-79\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-1333\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-79\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-1333\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-79\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-1333\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-79\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-1333\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-770\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-22\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-89\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-89\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-89\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": true,
+      "flagged": true,
+      "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-89\",\"severity\":\"high\",\"confidence\":0.85}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-79\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-770\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-22\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-89\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-89\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-89\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    },
+    {
+      "is_pos": false,
+      "flagged": false,
+      "out": "This is the patched version; the vulnerability is fixed.\nFINDING: {\"no_finding\":true,\"checked_cwe\":[\"CWE-89\"],\"verified_by\":[\"semgrep:silent\",\"bandit:silent\",\"exploit:failed-as-expected\"]}"
+    }
+  ]
+}

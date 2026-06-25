@@ -1,0 +1,27 @@
+# SovereignSec-AI — Blackwell-critical version constraints.
+#
+# These guard the toolchain against accidental up/downgrades. They are a STARTING
+# POINT — re-confirm exact versions against Unsloth's current Blackwell install doc
+# on kickoff day (PLAN.md §2.4, §13). The real guarantee is ft-rig/env/verify_env.py,
+# which inspects the *actual* runtime (cu128 build, sm_120, driver CUDA != 13.2).
+#
+# Hard invariants for RTX 5090 / sm_120 (these do NOT change):
+#   - torch must be built for CUDA 12.8 (a "cu128" wheel)        → verify_env checks torch.version.cuda
+#   - triton >= 3.3.1                                            (Blackwell support)
+#   - bitsandbytes with cu128 wheels                             (4-bit QLoRA)
+#   - CUDA toolkit 12.8                                          (NEVER 13.2 — gibberish on Qwen3.6)
+#
+# Versions below are indicative minimums known to support Blackwell; bump to the
+# current Unsloth-recommended set on kickoff day, then freeze for the project.
+torch>=2.7
+triton>=3.3.1
+bitsandbytes>=0.45.0
+transformers>=4.48
+datasets>=3.0
+peft>=0.14
+trl>=0.13
+accelerate>=1.2
+# unsloth + vllm are provided by the base image; pin them here too once you
+# bare-metal install (uncomment and set the confirmed versions):
+# unsloth==<kickoff-day-version>
+# vllm==<kickoff-day-version>

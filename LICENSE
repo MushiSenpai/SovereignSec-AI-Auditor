@@ -1,0 +1,27 @@
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   Copyright 2026 MushiSenpai (SovereignSec-AI)
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+   ---
+
+   This project bundles or invokes third-party components under their own licenses:
+   the Semgrep OSS engine (LGPL-2.1), Bandit (Apache-2.0), tree-sitter / tree-sitter-python
+   / Jedi (MIT), networkx (BSD-3), and (for the optional fine-tuning rig) Unsloth / TRL /
+   transformers / PEFT (Apache-2.0) and the Qwen2.5-Coder base models (Apache-2.0). The
+   Semgrep registry rules are NOT included — only rules authored in this repository are
+   distributed. Training data derives from the GitHub Advisory Database / CVEfixes (CC-BY-4.0).
+   See docs and rule headers for details.

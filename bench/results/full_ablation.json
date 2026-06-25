@@ -1,0 +1,100 @@
+{
+  "deterministic": {
+    "semgrep_only": {
+      "P": 1.0,
+      "R": 0.5,
+      "F1": 0.667
+    },
+    "plus_bandit": {
+      "P": 1.0,
+      "R": 1.0,
+      "F1": 1.0
+    },
+    "plus_taint": {
+      "P": 1.0,
+      "R": 1.0,
+      "F1": 1.0
+    },
+    "taint_paths": 1
+  },
+  "llm_base": {
+    "label": "base",
+    "model_dir": "Qwen/Qwen2.5-Coder-7B-Instruct",
+    "n_pos": 20,
+    "n_neg": 20,
+    "TP": 19,
+    "FN": 1,
+    "FP": 0,
+    "TN": 20,
+    "precision": 1.0,
+    "recall": 0.95,
+    "f1": 0.974,
+    "accuracy": 0.975,
+    "eval_time_s": 45.3,
+    "sec_per_audit": 1.13,
+    "samples": [
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"file\": \"django/password_validation.py\",\n  \"function\": \"validate\",\n  \"line\": 10,\n  \"description\": \"The function checks if the password is entirely numeric.\",\n  \"taints\""
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"findings\": [\n    {\n      \"file\": \"django/password_validation.py\",\n      \"line\": 10,\n      \"function\": \"__init__\",\n      \"description\": \"The function attempts to open a"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"file\": \"django/defaulttags.py\",\n  \"function\": \"include_is_allowed\",\n  \"tainted_inputs\": [\n    {\n      \"input_name\": \"filepath\",\n      \"description\": \"The file path to "
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "```json\n{\n  \"findings\": [\n    {\n      \"file\": \"django/tests.py\",\n      \"line\": 10,\n      \"function\": \"setUp\",\n      \"description\": \"The variable `var` is used in the template witho"
+      }
+    ]
+  },
+  "llm_ft": {
+    "label": "ft",
+    "model_dir": "out/real_adapter_7b",
+    "n_pos": 20,
+    "n_neg": 20,
+    "TP": 20,
+    "FN": 0,
+    "FP": 0,
+    "TN": 20,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "eval_time_s": 23.0,
+    "sec_per_audit": 0.58,
+    "samples": [
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-400\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-400\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-22\",\"severity\":\"high\",\"confidence\":0.85}"
+      },
+      {
+        "is_pos": true,
+        "flagged": true,
+        "out": "This pre-fix function contains the vulnerability the CVE patched.\nFINDING: {\"cwe\":\"CWE-20\",\"severity\":\"high\",\"confidence\":0.85}"
+      }
+    ]
+  },
+  "ft_delta": {
+    "recall": 0.05,
+    "precision": 0.0
+  }
+}

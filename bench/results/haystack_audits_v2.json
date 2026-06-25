@@ -1,0 +1,665 @@
+[
+  {
+    "cve": "synthetic-v2-0",
+    "cwe": "CWE-89",
+    "file_path": "app/m1_ecommerce.py",
+    "n_functions": 11,
+    "gt_functions": [
+      "search_products"
+    ],
+    "n_candidates": 2,
+    "bare_out": "**VULNERABLE FUNCTION:** `search_products`\n**LINE:** 45\n**CWE:** CWE-89: SQL Injection\n\nThe vulnerability lies in the `search_products` function where the SQL query is constructed using string concatenation without proper parameterization:\n\n```python\nquery = \"SELECT id, name, price FROM products WHERE name LIKE '%\" + term + \"%'\"\nrows = db.execute(query).fetchall()\n```\n\nThis can be exploited by an attacker to inject malicious SQL code into the query. For example, an attacker could input a search ",
+    "system_out": "The static scanner flagged lines 63 and 64 as potential vulnerabilities related to CWE-89, which is SQL Injection. Let's confirm this by examining the relevant code:\n\n```python\n@shop.route(\"/search\")\ndef search_products():\n    \"\"\"Full-text-ish search over product names.\"\"\"\n    term = request.args.get(\"q\", \"\")\n    db = get_db()\n    query = \"SELECT id, name, price FROM products WHERE name LIKE '%\" + term + \"%'\"\n    rows = db.execute(query).fetchall()\n    return jsonify([dict(r) for r in rows])\n```",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `search_products`: CWE-89",
+    "agentic_confirmed": {
+      "search_products": "CWE-89"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `search_products`: CWE-89 [system-confirmed]",
+    "hybrid_confirmed": {
+      "search_products": "CWE-89"
+    },
+    "hybrid_provenance": {
+      "search_products": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-1",
+    "cwe": "CWE-89",
+    "file_path": "app/m2_blog.py",
+    "n_functions": 10,
+    "gt_functions": [
+      "filter_by_status"
+    ],
+    "n_candidates": 5,
+    "bare_out": "**VULNERABLE FUNCTION:** `filter_by_status`\n**LINE:** 75\n**CWE:** CWE-89: SQL Injection\n\nExplanation:\nIn the `filter_by_status` function, the `status` variable is directly concatenated into the SQL query without proper parameterization. This can lead to SQL injection vulnerabilities if an attacker can control the `status` parameter.\n\nHere is the vulnerable code snippet:\n```python\ncur.execute(\n    \"SELECT id, title FROM blog_post \"\n    \"WHERE author_id = %s AND status = '\" + status + \"'\",\n    [re",
+    "system_out": "The flagged lines indeed contain vulnerabilities related to SQL injection. Specifically, the issue lies in the way user input is being concatenated directly into SQL queries without proper parameterization.\n\nHere are the findings:\n\n1. **Vulnerable Function**: `list_posts`\n   - **Line**: 57\n   - **CWE**: CWE-89\n   - **Description**: The `sort` and `direction` variables are concatenated directly into the SQL query string without using parameterized queries. This can lead to SQL injection if an att",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `list_posts`: CWE-89\n- function `filter_by_status`: CWE-89",
+    "agentic_confirmed": {
+      "list_posts": "CWE-89",
+      "filter_by_status": "CWE-89"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `list_posts`: CWE-89 [system-confirmed]\n- function `filter_by_status`: CWE-89 [system-confirmed]",
+    "hybrid_confirmed": {
+      "list_posts": "CWE-89",
+      "filter_by_status": "CWE-89"
+    },
+    "hybrid_provenance": {
+      "list_posts": "system-confirmed",
+      "filter_by_status": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-2",
+    "cwe": "CWE-89",
+    "file_path": "app/m3_admin.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "filter_users"
+    ],
+    "n_candidates": 4,
+    "bare_out": "**VULNERABLE FUNCTION:** `filter_users`\n**LINE:** 67\n**CWE:** CWE-89: SQL Injection\n\n### Explanation:\nIn the `filter_users` function, the `field` variable is directly concatenated into the SQL query string without proper parameterization. This can lead to SQL injection if an attacker provides a malicious `field` value.\n\n```python\ncur.execute(\n    \"SELECT id, email, role FROM users \"\n    \"WHERE \" + field + \" = '\" + value + \"' ORDER BY id\"\n)\n```\n\nThis line constructs the SQL query by directly inse",
+    "system_out": "The real vulnerability is in the `filter_users` function. This function constructs an SQL query using string concatenation, which can lead to SQL injection if the `field` or `value` parameters are not properly sanitized.\n\n**Vulnerable Function Name:** `filter_users`\n**Line:** 94\n**CWE:** CWE-89\n\nHere is the relevant code snippet:\n\n```python\ncur.execute(\n    \"SELECT id, email, role FROM users \"\n    \"WHERE \" + field + \" = '\" + value + \"' ORDER BY id\"\n)\n```\n\nThis line directly inserts the `field` a",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `export_users_csv`: CWE-89\n- function `filter_users`: CWE-89",
+    "agentic_confirmed": {
+      "export_users_csv": "CWE-89",
+      "filter_users": "CWE-89"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `filter_users`: CWE-89 [system-confirmed]\n- function `export_users_csv`: CWE-89 [system-confirmed]",
+    "hybrid_confirmed": {
+      "filter_users": "CWE-89",
+      "export_users_csv": "CWE-89"
+    },
+    "hybrid_provenance": {
+      "filter_users": "system-confirmed",
+      "export_users_csv": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-3",
+    "cwe": "CWE-89",
+    "file_path": "app/m4_rest_api.py",
+    "n_functions": 13,
+    "gt_functions": [
+      "aggregate_events"
+    ],
+    "n_candidates": 2,
+    "bare_out": "**VULNERABLE FUNCTION:** `_sanitize`  \n**LINE:** 18  \n**CWE:** CWE-93 - Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\n\nThe function `_sanitize` is used to clean up strings before they are included in SQL queries, but it only removes single quotes, semicolons, and double dashes. This is insufficient to prevent SQL injection attacks, especially when dealing with identifiers or numeric contexts. The `aggregate_events` endpoint uses this function to interpolate",
+    "system_out": "The static scanner flagged lines related to the `aggregate_events` function, which is indeed vulnerable to SQL Injection due to the use of the `_sanitize` function to clean user input before interpolating it directly into an SQL query.\n\n**Vulnerable Function Name:** `aggregate_events`\n\n**Line:** 93\n\n**CWE:** CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\n\nHere is the relevant code snippet:\n\n```python\n@api.route(\"/v1/events/aggregate\")\ndef aggregate_e",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `aggregate_events`: CWE-89",
+    "agentic_confirmed": {
+      "aggregate_events": "CWE-89"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `_sanitize`: CWE-79 [llm]\n- function `aggregate_events`: CWE-89 [system-confirmed]",
+    "hybrid_confirmed": {
+      "_sanitize": "CWE-79",
+      "aggregate_events": "CWE-89"
+    },
+    "hybrid_provenance": {
+      "_sanitize": "llm",
+      "aggregate_events": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-4",
+    "cwe": "CWE-89",
+    "file_path": "app/m5_internal_tool.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "lookup_inventory"
+    ],
+    "n_candidates": 1,
+    "bare_out": "**VULNERABLE FUNCTION:** `_build_lookup_filter`  \n**LINE:** `clauses.append(\"sku LIKE '\" + sku_prefix + \"%'\")`  \n**CWE:** CWE-89: SQL Injection\n\nThe function `_build_lookup_filter` constructs an SQL query by directly concatenating user input (`sku_prefix`) into the SQL string without proper parameterization. This can lead to SQL injection vulnerabilities.",
+    "system_out": "The static scanner flagged line 57 as a potential vulnerability, and upon reviewing the code, it appears to be correct. The issue lies in the `_build_lookup_filter` function where the `sku_prefix` parameter is concatenated directly into the SQL query without proper sanitization or parameterization.\n\nHere is the relevant part of the code:\n\n```python\ndef _build_lookup_filter(args):\n    \"\"\"Build a (clause, params) pair for the inventory lookup.\n\n    ``warehouse`` is coerced to int so it is safe to ",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `lookup_inventory`: CWE-89",
+    "agentic_confirmed": {
+      "lookup_inventory": "CWE-89"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `_build_lookup_filter`: CWE-89 [llm]\n- function `lookup_inventory`: CWE-89 [system-confirmed]",
+    "hybrid_confirmed": {
+      "_build_lookup_filter": "CWE-89",
+      "lookup_inventory": "CWE-89"
+    },
+    "hybrid_provenance": {
+      "_build_lookup_filter": "llm",
+      "lookup_inventory": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-5",
+    "cwe": "CWE-79",
+    "file_path": "app/m1_shop_search.py",
+    "n_functions": 10,
+    "gt_functions": [
+      "search"
+    ],
+    "n_candidates": 0,
+    "bare_out": "**VULNERABLE FUNCTION:** `search`\n\n**LINE:** `banner = \"<h2>Results for \" + term + \"</h2>\"`\n\n**CWE:** CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')\n\n### Explanation:\nThe `search` function constructs an HTML banner by directly concatenating user input (`term`) into an HTML string without proper escaping. This can lead to Cross-Site Scripting (XSS) vulnerabilities because the user input is not sanitized before being included in the HTML output. Althou",
+    "system_out": "Upon manual analysis, there is indeed a security vulnerability in the provided code. The issue lies in the `search` function where user input is directly concatenated into an HTML string and then passed to `render_template_string`.\n\n### Vulnerable Function:\n- **Function Name:** `search`\n- **Line:** `banner = \"<h2>Results for \" + term + \"</h2>\"`\n- **CWE:** CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')\n\n### Explanation:\nThe `search` function retrieves",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `search`: CWE-79 [llm]",
+    "hybrid_confirmed": {
+      "search": "CWE-79"
+    },
+    "hybrid_provenance": {
+      "search": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-6",
+    "cwe": "CWE-79",
+    "file_path": "app/m2_blog_comments.py",
+    "n_functions": 11,
+    "gt_functions": [
+      "moderation_preview"
+    ],
+    "n_candidates": 6,
+    "bare_out": "**VULNERABLE FUNCTION:** `moderation_preview`\n**LINE:** `block = \"<div class='preview'>\" + comment.body + \"</div>\"`\n**CWE:** CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')\n\n### Explanation:\nIn the `moderation_preview` function, the `comment.body` is directly concatenated into an HTML string without any sanitization or escaping. This can lead to Cross-Site Scripting (XSS) vulnerabilities if an attacker submits a malicious comment containing JavaScript",
+    "system_out": "Let's analyze the flagged lines to confirm the vulnerabilities:\n\n### Line 29:\n```python\nblock = \"<div class='preview'>\" + comment.body + \"</div>\"\n```\nThis line directly concatenates user input (`comment.body`) into an HTML string without escaping it. This can lead to Cross-Site Scripting (XSS) attacks.\n\n**Vulnerable Function:** `moderation_preview`\n**Line:** 29\n**CWE:** CWE-79 (Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'))\n\n### Line 66:\n```python\nreturn fo",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `moderation_preview`: CWE-80",
+    "agentic_confirmed": {
+      "moderation_preview": "CWE-80"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `moderation_preview`: CWE-80 [system-confirmed]\n- function `export_comment_text`: CWE-79 [llm]\n- function `unescape_for_search_index`: CWE-79 [llm]",
+    "hybrid_confirmed": {
+      "moderation_preview": "CWE-80",
+      "export_comment_text": "CWE-79",
+      "unescape_for_search_index": "CWE-79"
+    },
+    "hybrid_provenance": {
+      "moderation_preview": "system-confirmed",
+      "export_comment_text": "llm",
+      "unescape_for_search_index": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-7",
+    "cwe": "CWE-79",
+    "file_path": "app/m3_admin_users.py",
+    "n_functions": 10,
+    "gt_functions": [
+      "user_search"
+    ],
+    "n_candidates": 0,
+    "bare_out": "**VULNERABLE FUNCTION:** `user_search`\n**LINE:** `heading = '<h1>Admin search: ' + q + '</h1>'`\n**CWE:** CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')\n\n### Explanation:\nThe `user_search` function constructs an HTML heading (`<h1>`) by directly concatenating the user input (`q`) without any sanitization or escaping. This can lead to Cross-Site Scripting (XSS) vulnerabilities, where an attacker could inject malicious scripts into the search query that",
+    "system_out": "Upon manual analysis of the provided code, there is indeed a security vulnerability in the `user_search` function. The vulnerability arises from the way the search query (`q`) is directly concatenated into the HTML heading without proper escaping, which can lead to Cross-Site Scripting (XSS) attacks.\n\n### Vulnerable Function:\n- **Function Name:** `user_search`\n- **Line:** The vulnerability occurs in the following lines within the `user_search` function:\n  ```python\n  heading = '<h1>Admin search:",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `user_search`: CWE-79 [llm]",
+    "hybrid_confirmed": {
+      "user_search": "CWE-79"
+    },
+    "hybrid_provenance": {
+      "user_search": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-8",
+    "cwe": "CWE-79",
+    "file_path": "app/m4_status_dashboard.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "show_note"
+    ],
+    "n_candidates": 1,
+    "bare_out": "### Vulnerability Report\n\n**Vulnerable Function Name:** `sanitize_note`\n**Line:** 35\n**CWE:** CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')\n\n### Explanation:\n\nThe function `sanitize_note` is intended to sanitize user input by removing `<script>` tags. However, it does not handle other potentially dangerous HTML tags or attributes, which can still lead to Cross-Site Scripting (XSS) vulnerabilities.\n\nHere is the relevant code snippet:\n```python\ndef _s",
+    "system_out": "Upon reviewing the provided code, let's analyze the flagged line (L93) and its context:\n\n```python\nrendered = Markup(sanitize_note(body))\nreturn render_template(\"dash/note.html\", note=rendered)\n```\n\nThe static scanner flagged this line with CWE-79, which corresponds to Cross-Site Scripting (XSS). Let's break down the potential issue:\n\n1. **Data Source**: The `body` variable comes from the database (`row[\"body\"]`).\n2. **Sanitization**: The `sanitize_note` function is called on `body`. However, th",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `_strip_scripts`: CWE-79 [llm]\n- function `sanitize_note`: CWE-79 [llm]",
+    "hybrid_confirmed": {
+      "_strip_scripts": "CWE-79",
+      "sanitize_note": "CWE-79"
+    },
+    "hybrid_provenance": {
+      "_strip_scripts": "llm",
+      "sanitize_note": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-9",
+    "cwe": "CWE-79",
+    "file_path": "app/m5_api_profile.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "profile_card"
+    ],
+    "n_candidates": 0,
+    "bare_out": "**VULNERABLE FUNCTION:** `_build_profile_card`\n**LINE:** 37\n**CWE:** CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')\n\n### Explanation:\nIn the `_build_profile_card` function, the `website` variable is directly inserted into the HTML without any sanitization or escaping:\n\n```python\nwebsite = profile[\"website\"] or \"#\"\n# ...\nf\"<a class='site' href='{website}'>homepage</a>\"\n```\n\nThis can lead to Cross-Site Scripting (XSS) vulnerabilities if an attacker can",
+    "system_out": "Upon manual analysis, there is indeed a security vulnerability in the `_build_profile_card` function. Specifically, the `website` field is directly inserted into the HTML without any sanitization or escaping, which can lead to Cross-Site Scripting (XSS) attacks.\n\n### Vulnerable Function:\n- **Function Name:** `_build_profile_card`\n- **Line:** The vulnerability occurs in the following line within the `_build_profile_card` function:\n  ```python\n  f\"<a class='site' href='{website}'>homepage</a>\"\n  `",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `_build_profile_card`: CWE-79 [llm]",
+    "hybrid_confirmed": {
+      "_build_profile_card": "CWE-79"
+    },
+    "hybrid_provenance": {
+      "_build_profile_card": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-10",
+    "cwe": "CWE-78",
+    "file_path": "app/module1_ecommerce.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "generate_label"
+    ],
+    "n_candidates": 1,
+    "bare_out": "**VULNERABLE FUNCTION:** `generate_label`\n**LINE:** `subprocess.call(cmd, shell=True)`\n**CWE:** CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\n\n### Explanation:\nThe `generate_label` function constructs a command string that includes user input (`carrier`) and executes it using `subprocess.call` with `shell=True`. This can lead to OS Command Injection if the `carrier` input is not properly sanitized. An attacker could inject malicious commands i",
+    "system_out": "The static scanner flagged line 84 with CWE-78, which corresponds to **Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')**. This vulnerability arises when user input is not properly sanitized before being used in a system command.\n\nIn the provided code, the vulnerable function is `generate_label` on line 84:\n\n```python\nsubprocess.call(cmd, shell=True)\n```\n\nHere, the `cmd` variable is constructed using string formatting, incorporating the `carrier` value d",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `generate_label`: CWE-78",
+    "agentic_confirmed": {
+      "generate_label": "CWE-78"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `generate_label`: CWE-78 [system-confirmed]",
+    "hybrid_confirmed": {
+      "generate_label": "CWE-78"
+    },
+    "hybrid_provenance": {
+      "generate_label": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-11",
+    "cwe": "CWE-78",
+    "file_path": "app/module2_blog.py",
+    "n_functions": 11,
+    "gt_functions": [
+      "probe"
+    ],
+    "n_candidates": 1,
+    "bare_out": "**VULNERABLE FUNCTION:** `probe`\n**LINE:** `out = subprocess.check_output(cmd, shell=True, text=True)`\n**CWE:** CWE-78: OS Command Injection\n\n### Explanation:\nThe `probe` function constructs a command string using user input (`entries`) and then executes it with `subprocess.check_output` using `shell=True`. This can lead to OS Command Injection if the `entries` parameter is not properly sanitized. Although the code uses `shlex.quote(src)` to quote the `src` variable, it does not sanitize the `en",
+    "system_out": "The static scanner flagged line 114 with CWE-78, which corresponds to \"Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\". Let's confirm if this is indeed a vulnerability.\n\nHere is the relevant code snippet:\n\n```python\n@bp.route(\"/probe/<asset_id>\")\ndef probe(asset_id):\n    \"\"\"\n    Return ffprobe metadata for an asset.\n\n    Authors can pass a custom 'entries' selector to pull specific fields\n    (e.g. stream=width,height). It is concatenated into the ffpr",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `probe`: CWE-78",
+    "agentic_confirmed": {
+      "probe": "CWE-78"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `probe`: CWE-78 [system-confirmed]",
+    "hybrid_confirmed": {
+      "probe": "CWE-78"
+    },
+    "hybrid_provenance": {
+      "probe": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-12",
+    "cwe": "CWE-78",
+    "file_path": "app/module3_admin.py",
+    "n_functions": 9,
+    "gt_functions": [
+      "ping_host"
+    ],
+    "n_candidates": 1,
+    "bare_out": "**VULNERABLE FUNCTION:** `ping_host`\n**LINE:** `cmd = \"ping -c 3 -w 5 \" + host`\n**CWE:** CWE-78: OS Command Injection\n\n### Explanation:\nThe `ping_host` function constructs a shell command by concatenating user input (`host`) directly into the command string without proper sanitization. This can lead to an OS Command Injection vulnerability, where an attacker could inject malicious commands to execute arbitrary code on the server. \n\nFor example, if an attacker provides a `host` value like `exampl",
+    "system_out": "The static scanner flagged line 67, which is part of the `ping_host` function, and suggested CWE-78, which corresponds to \"Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\".\n\nHere is the relevant code snippet:\n\n```python\ncmd = \"ping -c 3 -w 5 \" + host\ntry:\n    out = subprocess.check_output(cmd, shell=True, text=True, timeout=15)\nexcept subprocess.CalledProcessError as e:\n    out = e.output or \"\"\n```\n\n**Vulnerable Function Name:** `ping_host`\n**Line:** 67",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `ping_host`: CWE-78",
+    "agentic_confirmed": {
+      "ping_host": "CWE-78"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `ping_host`: CWE-78 [system-confirmed]",
+    "hybrid_confirmed": {
+      "ping_host": "CWE-78"
+    },
+    "hybrid_provenance": {
+      "ping_host": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-13",
+    "cwe": "CWE-78",
+    "file_path": "app/module4_restapi.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "checkout_ref"
+    ],
+    "n_candidates": 1,
+    "bare_out": "**VULNERABLE FUNCTION:** `checkout_ref`\n\n**LINE:** `cmd = \"cd %s && git checkout %s\" % (shlex.quote(ws), ref)`\n\n**CWE:** CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\n\n### Explanation:\nThe function `checkout_ref` constructs a shell command as a string and executes it using `subprocess.call(cmd, shell=True)`. Although `shlex.quote(ws)` is used to safely quote the workspace path, the `ref` variable is directly inserted into the command string wi",
+    "system_out": "The static scanner flagged line 91, which is part of the `checkout_ref` function. Let's confirm if this is indeed a vulnerability.\n\nHere is the relevant code snippet:\n\n```python\n@router.post(\"/repos/checkout\")\ndef checkout_ref(ref: str = Query(...), project: str = Depends(current_project)):\n    \"\"\"\n    Check out a branch in the project workspace.\n\n    The ref is normalised through _sanitize_ref and then a `git checkout`\n    is run. We build the command as a string and run it through the shell so",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `checkout_ref`: CWE-78",
+    "agentic_confirmed": {
+      "checkout_ref": "CWE-78"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `checkout_ref`: CWE-78 [system-confirmed]",
+    "hybrid_confirmed": {
+      "checkout_ref": "CWE-78"
+    },
+    "hybrid_provenance": {
+      "checkout_ref": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-14",
+    "cwe": "CWE-78",
+    "file_path": "app/module5_internal.py",
+    "n_functions": 11,
+    "gt_functions": [
+      "convert_export"
+    ],
+    "n_candidates": 1,
+    "bare_out": "**VULNERABLE FUNCTION:** `convert_export`  \n**LINE:** 78  \n**CWE:** CWE-78: OS Command Injection\n\n### Explanation:\nThe function `convert_export` constructs a command string using user input (`fmt`) and executes it with `subprocess.call(cmd, shell=True)`. Although the code attempts to validate the `fmt` variable using `re.match`, the regular expression does not properly anchor the match to the end of the string, allowing for potential command injection.\n\nFor example, if a user provides `fmt` as `",
+    "system_out": "The static scanner flagged line 93, which is part of the `convert_export` function, with CWE-78, indicating a potential command injection vulnerability. Let's confirm this:\n\n### Vulnerable Function:\n`convert_export`\n\n### Line:\n93\n\n### CWE:\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\n\n### Explanation:\nThe vulnerability arises from the use of `subprocess.call(cmd, shell=True)` where `cmd` is constructed using string interpolation. The `fmt` va",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `convert_export`: CWE-78",
+    "agentic_confirmed": {
+      "convert_export": "CWE-78"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `convert_export`: CWE-78 [system-confirmed]",
+    "hybrid_confirmed": {
+      "convert_export": "CWE-78"
+    },
+    "hybrid_provenance": {
+      "convert_export": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-15",
+    "cwe": "CWE-22",
+    "file_path": "app/m1_blog_media.py",
+    "n_functions": 10,
+    "gt_functions": [
+      "download_attachment"
+    ],
+    "n_candidates": 1,
+    "bare_out": "### Vulnerability Report\n\n**VULNERABLE FUNCTION:** `download_attachment`\n**LINE:** 37 (`target = os.path.join(directory, name)`)\n**CWE:** CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')\n\n### Explanation\n\nThe function `download_attachment` constructs a file path using user-supplied input without proper validation or sanitization. Specifically, the `name` parameter from the query string is directly concatenated with the `directory` path to form the `target` f",
+    "system_out": "Upon reviewing the provided code, there is no clear indication of a vulnerability related to CWE-327 (Use of a Broken or Risky Cryptographic Algorithm) at line 94 or anywhere else in the file.\n\nLine 94 in the provided code is:\n```python\nstored = hashlib.md5(os.urandom(16)).hexdigest() + ext\n```\nWhile MD5 is indeed considered cryptographically broken and unsuitable for further use, in this context, it is being used to generate a random filename for storing uploaded files. This usage does not dire",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `download_attachment`: CWE-73 [llm]",
+    "hybrid_confirmed": {
+      "download_attachment": "CWE-73"
+    },
+    "hybrid_provenance": {
+      "download_attachment": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-16",
+    "cwe": "CWE-22",
+    "file_path": "app/m2_ecommerce_invoices.py",
+    "n_functions": 10,
+    "gt_functions": [
+      "product_manual"
+    ],
+    "n_candidates": 0,
+    "bare_out": "### Vulnerability Report\n\n**VULNERABLE FUNCTION:** `product_manual`\n**LINE:** `path = os.path.join(MANUAL_ROOT, product.manual_dir, doc)`\n**CWE:** CWE-73: External Control of File Name or Path\n\n### Explanation\n\nThe function `product_manual` constructs a file path using user-supplied input (`doc` parameter) without proper validation or sanitization. This could allow an attacker to manipulate the `doc` parameter to access arbitrary files on the server, leading to a path traversal attack.\n\n### Reco",
+    "system_out": "Upon reviewing the provided code, there is a potential security vulnerability in the `product_manual` function. Specifically, the issue lies in the way the `doc` query parameter is used to construct the file path without proper validation or sanitization.\n\n### Vulnerable Function:\n- **Function Name:** `product_manual`\n- **Line:** `path = os.path.join(MANUAL_ROOT, product.manual_dir, doc)`\n- **CWE:** CWE-73: External Control of File Name or Path\n\n### Explanation:\nThe `doc` parameter is directly a",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `product_manual`: CWE-73 [llm]",
+    "hybrid_confirmed": {
+      "product_manual": "CWE-73"
+    },
+    "hybrid_provenance": {
+      "product_manual": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-17",
+    "cwe": "CWE-22",
+    "file_path": "app/m3_admin_logs.py",
+    "n_functions": 10,
+    "gt_functions": [
+      "view_archive"
+    ],
+    "n_candidates": 1,
+    "bare_out": "### Vulnerability Report\n\n**VULNERABLE FUNCTION:** `view_archive`\n**LINE:** 78 (`full = os.path.join(ARCHIVE_DIR, rel)`)\n**CWE:** CWE-73: External Control of File Name or Path\n\n### Explanation\n\nThe function `view_archive` constructs a file path using user-provided input without proper validation. Specifically, the `rel` variable, which is derived from the `path` parameter in the GET request, is used to construct the full path to the file being accessed. Although there is an attempt to block abso",
+    "system_out": "Upon reviewing the provided code, there is no clear indication of a vulnerability related to CWE-79 (Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') on line 95 or any other part of the file. CWE-79 typically involves outputting user input directly to a web page without proper sanitization, which can lead to XSS attacks.\n\nLet's analyze the code around line 95:\n\n```python\n@staff_member_required\n@require_GET\ndef view_archive(request):\n    \"\"\"View a rotated/archi",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `view_archive`: CWE-79",
+    "agentic_confirmed": {
+      "view_archive": "CWE-79"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `view_archive`: CWE-79 [system-confirmed]",
+    "hybrid_confirmed": {
+      "view_archive": "CWE-79"
+    },
+    "hybrid_provenance": {
+      "view_archive": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-18",
+    "cwe": "CWE-22",
+    "file_path": "app/m4_rest_api_reports.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "download_report"
+    ],
+    "n_candidates": 1,
+    "bare_out": "**No finding**\n\nThe provided code does not contain any obvious security vulnerabilities related to the functions listed. The `_sanitize_report_name` function appears to handle path traversal attacks by removing `../` sequences and ensuring that the file paths remain within the intended cache directory. There are no other functions that seem to introduce significant security risks based on the given code snippet.",
+    "system_out": "Upon reviewing the provided code, the static scanner flagged line 26 with CWE-327, which relates to the use of weak or insecure cryptographic algorithms. The relevant line is:\n\n```python\nh = hashlib.sha1(account_id.encode()).hexdigest()\n```\n\n**Vulnerable Function:** `_account_cache`\n**Line:** 26\n**CWE:** CWE-327\n\n### Explanation:\nSHA-1 is considered cryptographically broken and unsuitable for further use. It is vulnerable to collision attacks, meaning two different inputs can produce the same ha",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `_sanitize_report_name`: CWE-73 [llm]",
+    "hybrid_confirmed": {
+      "_sanitize_report_name": "CWE-73"
+    },
+    "hybrid_provenance": {
+      "_sanitize_report_name": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-19",
+    "cwe": "CWE-22",
+    "file_path": "app/m5_internal_fileshare.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "download_file"
+    ],
+    "n_candidates": 0,
+    "bare_out": "**No finding**\n\nThe code appears to have implemented proper checks to prevent directory traversal attacks. The `_safe_resolve` function ensures that any resolved path remains within the intended `root` directory. Additionally, the `os.path.join` and `os.path.abspath` functions are used consistently to construct and validate paths. There are no obvious security vulnerabilities in the provided code based on the given information.",
+    "system_out": "Upon manual analysis, there appears to be a potential security vulnerability in the `list_projects` function. The issue lies in the way the function lists directories within `WORKSPACE_ROOT` without validating whether each directory corresponds to a valid project that the user has access to.\n\n### Vulnerable Function:\n- **Function Name:** `list_projects`\n- **Line:** 127 (`allowed = [p for p in os.listdir(WORKSPACE_ROOT) if user_can_access_project(user, p)]`)\n- **CWE:** CWE-22: Improper Limitation",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "No finding.",
+    "hybrid_confirmed": {},
+    "hybrid_provenance": {}
+  },
+  {
+    "cve": "synthetic-v2-20",
+    "cwe": "CWE-918",
+    "file_path": "app/module1_easy_blog.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "embed_preview"
+    ],
+    "n_candidates": 1,
+    "bare_out": "**VULNERABLE FUNCTION:** `embed_preview`\n**LINE:** `resp = requests.get(target, timeout=5)`\n**CWE:** CWE-918: Server-Side Request Forgery (SSRF)\n\nThis function is vulnerable to Server-Side Request Forgery (SSRF) because it directly uses the `target` URL provided by the user without any validation or sanitization. An attacker could exploit this to make the server send HTTP requests to internal network services or other unintended targets.",
+    "system_out": "Upon reviewing the provided code, there is no actual SQL injection vulnerability (CWE-89) at line 88 or anywhere else in the file. The SQL queries in the file use parameterized queries, which are a strong defense against SQL injection attacks.\n\nHowever, there is a different security vulnerability present in the `embed_preview` function at line 106:\n\n**VULNERABLE FUNCTION:** `embed_preview`\n**LINE:** 106 (`resp = requests.get(target, timeout=5)`)\n**CWE:** CWE-79 - Improper Neutralization of Input",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `embed_preview`: CWE-918 [llm]",
+    "hybrid_confirmed": {
+      "embed_preview": "CWE-918"
+    },
+    "hybrid_provenance": {
+      "embed_preview": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-21",
+    "cwe": "CWE-918",
+    "file_path": "app/module2_medium_ecommerce.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "import_remote_image"
+    ],
+    "n_candidates": 0,
+    "bare_out": "### Vulnerability Report\n\n**VULNERABLE FUNCTION:** `import_remote_image`\n**LINE:** 67\n**CWE:** CWE-918: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')  \n**ACTUAL CWE:** CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') is not present here, but the actual issue is **CWE-918: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')** is not applicable. The correct CWE for this c",
+    "system_out": "Upon manual analysis of the provided code, the function `import_remote_image` appears to be vulnerable to **Server-Side Request Forgery (SSRF)**. This vulnerability arises because the function fetches an image from a URL provided directly by the user without any validation or sanitization.\n\n### Vulnerable Function:\n- **Function Name:** `import_remote_image`\n- **Line:** 67 (where `requests.get(image_url, timeout=8, stream=True)` is called)\n- **CWE:** CWE-918: Server-Side Request Forgery (SSRF)\n\n#",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `import_remote_image`: CWE-918 [llm]\n- function `probe_remote_asset`: CWE-918 [llm]",
+    "hybrid_confirmed": {
+      "import_remote_image": "CWE-918",
+      "probe_remote_asset": "CWE-918"
+    },
+    "hybrid_provenance": {
+      "import_remote_image": "llm",
+      "probe_remote_asset": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-22",
+    "cwe": "CWE-918",
+    "file_path": "app/module3_medium_admin.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "integration_healthcheck"
+    ],
+    "n_candidates": 0,
+    "bare_out": "**VULNERABLE FUNCTION:** `integration_healthcheck`  \n**LINE:** 67  \n**CWE:** CWE-918: Server-Side Request Forgery (SSRF)\n\n### Explanation:\nThe function `integration_healthcheck` takes a `health_url` from user input and makes an HTTP GET request to that URL using the `requests` library. This can be exploited by an attacker to make the server send requests to internal network resources or other unintended destinations, leading to potential SSRF vulnerabilities.",
+    "system_out": "Upon manual analysis of the provided code, the function that appears to have a security vulnerability is:\n\n**VULNERABLE FUNCTION NAME:** `integration_healthcheck`\n**LINE:** `resp = requests.get(health_url, timeout=5)`\n**CWE:** CWE-918: Server-Side Request Forgery (SSRF)\n\n### Explanation:\nThe `integration_healthcheck` function takes a `health_url` from user input and makes an HTTP GET request to that URL using the `requests` library. Since the `health_url` is not validated or sanitized, an attack",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `integration_healthcheck`: CWE-918 [llm]",
+    "hybrid_confirmed": {
+      "integration_healthcheck": "CWE-918"
+    },
+    "hybrid_provenance": {
+      "integration_healthcheck": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-23",
+    "cwe": "CWE-918",
+    "file_path": "app/module4_hard_restapi.py",
+    "n_functions": 15,
+    "gt_functions": [
+      "render_pdf"
+    ],
+    "n_candidates": 0,
+    "bare_out": "### Vulnerability Report\n\n**VULNERABLE FUNCTION:** `_host_is_blocked`\n\n**LINE:** 44\n\n**CWE:** CWE-918: Server-Side Request Forgery (SSRF)\n\n### Explanation:\n\nThe function `_host_is_blocked` is intended to prevent SSRF attacks by blocking certain hostnames and IP addresses. However, it only checks the literal hostname and IP addresses against a denylist. It does not handle cases where the hostname could be bypassed using techniques such as DNS rebinding, IPv6 addresses, or other obfuscation method",
+    "system_out": "Upon manual analysis, the vulnerability lies in the `_host_is_blocked` function. This function is intended to block internal hosts and private IP addresses, but it has a flaw that allows certain internal hosts to be bypassed.\n\n### Vulnerable Function:\n- **Function Name:** `_host_is_blocked`\n- **Line:** The vulnerability is present throughout the function, but specifically in how it handles hostnames and IP addresses.\n- **CWE:** CWE-918: Improper Neutralization of Special Elements used in an OS C",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `render_pdf`: CWE-918 [llm]",
+    "hybrid_confirmed": {
+      "render_pdf": "CWE-918"
+    },
+    "hybrid_provenance": {
+      "render_pdf": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-24",
+    "cwe": "CWE-502",
+    "file_path": "app/cart_views.py",
+    "n_functions": 11,
+    "gt_functions": [
+      "restore_cart"
+    ],
+    "n_candidates": 1,
+    "bare_out": "**VULNERABLE FUNCTION:** `restore_cart`\n**LINE:** `saved = pickle.loads(raw)`\n**CWE:** CWE-502: Deserialization of Untrusted Data\n\n### Explanation:\nThe function `restore_cart` uses `pickle.loads` to deserialize data from a base64-decoded string (`raw`). This is highly insecure because `pickle` can execute arbitrary code during deserialization if the input data is maliciously crafted. An attacker could exploit this to execute arbitrary code on the server, leading to a potential remote code execut",
+    "system_out": "The flagged line (L158) in the provided code is:\n\n```python\nsaved = pickle.loads(raw)\n```\n\nThis line uses the `pickle` module to deserialize data from a base64-decoded string (`raw`). This is a significant security vulnerability because `pickle` can execute arbitrary code during deserialization, which can lead to remote code execution (RCE).\n\n### Vulnerable Function:\n- **Function Name:** `restore_cart`\n- **Line:** 158\n- **CWE:** CWE-502: Deserialization of Untrusted Data\n\n### Recommendation:\nRep",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `restore_cart`: CWE-89",
+    "agentic_confirmed": {
+      "restore_cart": "CWE-89"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `restore_cart`: CWE-89 [system-confirmed]",
+    "hybrid_confirmed": {
+      "restore_cart": "CWE-89"
+    },
+    "hybrid_provenance": {
+      "restore_cart": "system-confirmed"
+    }
+  },
+  {
+    "cve": "synthetic-v2-25",
+    "cwe": "CWE-502",
+    "file_path": "app/import_views.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "import_post"
+    ],
+    "n_candidates": 1,
+    "bare_out": "### Vulnerability Report\n\n**VULNERABLE FUNCTION:** `_parse_frontmatter`\n\n**LINE:** `metadata = yaml.load(meta_block, Loader=yaml.Loader)`\n\n**CWE:** CWE-798: Use of Insecure Deserialization ('Deserialization of Untrusted Data')\n\n### Explanation:\n\nThe function `_parse_frontmatter` uses `yaml.load()` without specifying a safe loader. This can lead to arbitrary code execution if an attacker can control the input YAML data. The `yaml.load()` function should be replaced with `yaml.safe_load()` to avoi",
+    "system_out": "Upon reviewing the provided code, the static scanner's flag on line 96 (CWE-20) seems to be incorrect. CWE-20 refers to \"Improper Input Validation,\" which typically involves issues where user input is not properly validated before being used in a way that could lead to security vulnerabilities, such as command injection or SQL injection.\n\nLet's look at line 96:\n\n```python\nmetadata = yaml.load(meta_block, Loader=yaml.Loader)\n```\n\nThis line uses PyYAML's `load` function with a specific loader (`ya",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `_parse_frontmatter`: CWE-20",
+    "agentic_confirmed": {
+      "_parse_frontmatter": "CWE-20"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `_parse_frontmatter`: CWE-20 [system-confirmed]\n- function `import_post`: CWE-798 [llm]",
+    "hybrid_confirmed": {
+      "_parse_frontmatter": "CWE-20",
+      "import_post": "CWE-798"
+    },
+    "hybrid_provenance": {
+      "_parse_frontmatter": "system-confirmed",
+      "import_post": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-26",
+    "cwe": "CWE-502",
+    "file_path": "app/preferences.py",
+    "n_functions": 11,
+    "gt_functions": [
+      "import_prefs_bundle"
+    ],
+    "n_candidates": 1,
+    "bare_out": "**VULNERABLE FUNCTION:** `import_prefs_bundle`\n**LINE:** `bundle = pickle.loads(zlib.decompress(compressed))`\n**CWE:** CWE-502: Deserialization of Untrusted Data\n\n### Explanation:\nThe function `import_prefs_bundle` uses `pickle.loads` to deserialize data that has been decompressed from a base64-encoded zlib-compressed string. This is highly insecure because `pickle` can execute arbitrary code during deserialization if the data is crafted by an attacker. This can lead to remote code execution (RC",
+    "system_out": "The static scanner flagged line 153 with CWE-502, which is related to Deserialization of Untrusted Data. Let's confirm if this is indeed a vulnerability by examining the relevant code:\n\n```python\n@prefs_bp.route(\"/prefs/import\", methods=[\"POST\"])\ndef import_prefs_bundle():\n    \"\"\"Import a preferences bundle exported from another environment.\n\n    Bundles are base64 of a zlib-compressed object graph so the full\n    widget layout (including custom widget objects) survives the round\n    trip betwee",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `import_prefs_bundle`: CWE-502 [llm]",
+    "hybrid_confirmed": {
+      "import_prefs_bundle": "CWE-502"
+    },
+    "hybrid_provenance": {
+      "import_prefs_bundle": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-27",
+    "cwe": "CWE-502",
+    "file_path": "app/webhooks.py",
+    "n_functions": 12,
+    "gt_functions": [
+      "ingest_legacy_event"
+    ],
+    "n_candidates": 1,
+    "bare_out": "### Vulnerability Report\n\n**VULNERABLE FUNCTION:** `_sanitize_blob`\n**LINE:** `event = pickle.loads(clean_bytes)`\n**CWE:** CWE-502: Deserialization of Untrusted Data\n\n### Explanation\n\nThe function `_sanitize_blob` decodes a base64-encoded string into bytes and then uses `pickle.loads` to deserialize these bytes into a Python object. The `pickle` module is known to be insecure when used to deserialize data from untrusted sources because it can execute arbitrary code during deserialization.\n\nThis ",
+    "system_out": "The flagged line (L122) in the file `app/webhooks.py` is:\n\n```python\nevent = pickle.loads(clean_bytes)\n```\n\nThis line uses the `pickle` module to deserialize data from a byte string (`clean_bytes`). The `pickle` module is known to be insecure when used to deserialize untrusted data because it can execute arbitrary code during deserialization, leading to remote code execution (RCE).\n\n### Vulnerability Details:\n- **Vulnerable Function Name:** `pickle.loads`\n- **Line:** 122\n- **CWE:** CWE-502: Dese",
+    "agentic_out": "No finding.",
+    "agentic_confirmed": {},
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `ingest_legacy_event`: CWE-502 [llm]\n- function `delete_event`: CWE-307 [llm]\n- function `rotate_partner_secret`: CWE-307 [llm]",
+    "hybrid_confirmed": {
+      "ingest_legacy_event": "CWE-502",
+      "delete_event": "CWE-307",
+      "rotate_partner_secret": "CWE-307"
+    },
+    "hybrid_provenance": {
+      "ingest_legacy_event": "llm",
+      "delete_event": "llm",
+      "rotate_partner_secret": "llm"
+    }
+  },
+  {
+    "cve": "synthetic-v2-28",
+    "cwe": "CWE-502",
+    "file_path": "app/report_jobs.py",
+    "n_functions": 13,
+    "gt_functions": [
+      "import_job"
+    ],
+    "n_candidates": 1,
+    "bare_out": "### Vulnerability Report\n\n**VULNERABLE FUNCTION:** `_decode_params`\n**LINE:** 52\n**CWE:** CWE-502: Deserialization of Untrusted Data\n\n### Explanation\n\nThe function `_decode_params` uses `jsonpickle.decode` to deserialize data from a stored `params_blob`. This can be dangerous if the `params_blob` contains maliciously crafted data, as `jsonpickle` can execute arbitrary code during deserialization.\n\n**Code Snippet:**\n```python\ndef _decode_params(params_text):\n    \"\"\"Decode a stored params blob bac",
+    "system_out": "Upon reviewing the provided code, the static scanner flagged line 48 with CWE-502, which is related to Deserialization of Untrusted Data. Let's confirm if this is indeed a vulnerability.\n\nThe flagged line is part of the `_decode_params` function:\n\n```python\ndef _decode_params(params_text):\n    \"\"\"Decode a stored params blob back into a params object.\n\n    Jobs may carry rich values (Decimal, datetime, range helpers) that\n    plain JSON can't represent, so params are stored with jsonpickle and\n  ",
+    "agentic_out": "Confirmed vulnerabilities:\n- function `_decode_params`: CWE-502",
+    "agentic_confirmed": {
+      "_decode_params": "CWE-502"
+    },
+    "hybrid_out": "Confirmed vulnerabilities:\n- function `_decode_params`: CWE-502 [system-confirmed]\n- function `_encode_params`: CWE-502 [llm]\n- function `import_job`: CWE-502 [llm]",
+    "hybrid_confirmed": {
+      "_decode_params": "CWE-502",
+      "_encode_params": "CWE-502",
+      "import_job": "CWE-502"
+    },
+    "hybrid_provenance": {
+      "_decode_params": "system-confirmed",
+      "_encode_params": "llm",
+      "import_job": "llm"
+    }
+  }
+]

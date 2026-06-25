@@ -1,0 +1,23 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "dataset": "ft-rig/data/out/real_sft.jsonl",
+  "rows": 890,
+  "max_seq_len": 2048,
+  "max_steps": 120,
+  "lora_rank": 16,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "compute_capability": [
+    12,
+    0
+  ],
+  "torch": "2.10.0+cu128",
+  "torch_cuda": "12.8",
+  "load_time_s": 289.43,
+  "weights_vram_gib_4bit": 5.36,
+  "peak_vram_gib_training": 5.98,
+  "train_time_s": 63.62,
+  "train_samples_per_s": 7.7,
+  "train_steps_per_s": 1.925,
+  "final_loss": 0.6856,
+  "adapter": "out/real_adapter_7b"
+}
