@@ -82,7 +82,7 @@ python3 -m venv .venv && .venv/bin/pip install -U pip
 .venv/bin/pip install tree-sitter tree-sitter-python jedi networkx flask pytest semgrep bandit datasketch pydriller pyyaml
 # run the M2 acceptance suite + eval metrics
 PATH="$PWD/.venv/bin:$PATH" PYTHONPATH=.:ft-rig/eval .venv/bin/python -m pytest tests/ ft-rig/eval/tests/ -q
-# see the ablation (Semgrep-CE-only R=0.5 -> +taint P=R=1.0)
+# the ablation: Semgrep-CE-only R=0.5 (misses cross-file SQLi) -> +Bandit recovers the sink, R=1.0 -> +taint adds the cross-file proof path
 PATH="$PWD/.venv/bin:$PATH" PYTHONPATH=. .venv/bin/python demo/run_ablation.py
 ```
 QLoRA training ([`ft-rig/train/`](ft-rig/train)) and vLLM serving ([`ft-rig/serve/`](ft-rig/serve)) run on the GPU — see [`IMPL_SPEC.md`](IMPL_SPEC.md) and [`bench/results/M3_REPORT.md`](bench/results/M3_REPORT.md).

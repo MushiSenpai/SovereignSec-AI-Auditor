@@ -118,7 +118,11 @@ internal bugs** (Django auditing Django's ORM internals). The product's actual j
 **user application code** that *uses* those frameworks — where textbook patterns (raw SQL with
 request input, unescaped output) actually appear and where our rules and taint engine actually
 fire. On framework internals, our SAST fired on 1 of 15 files; on user-app code (the seeded
-benchmark), the cross-file taint engine takes recall from 0.5 to 1.0 with zero false positives.
+benchmark), the rules and taint engine fire where Semgrep alone can't — recall goes 0.5 to 1.0 with
+zero false positives. (On that 2-vuln demo a pattern scanner already recovers the sink, so recall is
+carried before taint runs; the taint engine's job there is the cross-file *proof*. Where the taint
+engine itself moves the numbers is the cross-file precision benchmark — a per-file tool scores 0.25
+precision on safe-but-suspicious decoys, the taint engine 1.00.)
 
 **Same system, opposite results — because the eval domain and the product domain weren't the
 same thing.** Always check that your benchmark is testing the job your product actually does.

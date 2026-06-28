@@ -282,6 +282,17 @@ audit <repo>` (or a `--network=none` Docker image) returns `✔ PROVEN (taint)` 
 no model, zero egress. The LLM/fine-tune is an optional augmentation on top, not the engine — which
 is the whole project's thesis, now packaged.
 
+### E12. The ablation credit I gave taint that Bandit had already earned 🟢
+**TL;DR.** I'd been framing the seeded-demo ablation as "Semgrep R=0.5 → +taint P=R=1.0," implying the
+cross-file taint engine is what closes recall. Re-running the live ablation: **Bandit (rung B) recovers
+the SQLi sink and lifts recall to 1.0 *before* the taint rung (C) runs** — both rungs sit at P=R=1.0, and
+neither scanner false-positives on the planted safe function, so even precision is already 1.0 without
+taint. Taint's real contribution on this 2-vuln demo is the **source→sink proof path across three
+files**, not marginal recall; its measured recall/precision win is the **cross-file precision benchmark**
+(per-file LLM 0.25 precision on safe decoys → taint 1.00). Fixed the framing in the README, INSIGHTS, and
+the demo narration. **Lesson:** in a layered ablation, attribute a metric gain to the layer that *first*
+reached the ceiling, not the one you're proudest of — and re-run the numbers before quoting them.
+
 ## Series F — Data mining (the moat)
 
 ### F1. GitHub Security Advisories tag fix commits as "WEB", not "FIX" — and it's not close 🟢🔵

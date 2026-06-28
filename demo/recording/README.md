@@ -32,7 +32,7 @@ HyperFrames**, with AI b-roll from a media-generation tool. Good for the marketi
 portfolio site — not for capturing the live run (use #1/#2 for that).
 
 ## Suggested cut list
-1. `vhs` clip of `demo/run_ablation.py` (Semgrep-CE R=0.5 → +taint P=R=1.0).
+1. `vhs` clip of `demo/run_ablation.py` (Semgrep-CE R=0.5 → +Bandit recovers the sink R=1.0 → +taint traces the cross-file path).
 2. `vhs` clip of the agent run emitting the cross-file SQLi finding.
 3. OBS split-screen: full scan + `bandwhich` at 0 egress + `nvidia-smi`.
 4. (optional) HyperFrames narrated intro/outro.
