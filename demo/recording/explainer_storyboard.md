@@ -1,10 +1,7 @@
-# SovereignSec-AI — narrated explainer (storyboard for your portfolio site)
+# SovereignSec-AI-Auditor — narrated explainer (storyboard)
 
-**Render path:** I can't render HeyGen HyperFrames from a CLI agent (the MCP's `compose`/
-`render_video` are disabled here — they're for hosted clients). To produce this:
-`npx skills add heygen-com/hyperframes` then `/hyperframes` with this storyboard, **or** run it
-from a hosted Claude client where the HyperFrames MCP can compose/render. B-roll is ready:
-`ablation.gif` and `splitscreen.gif`. Target: 60–75s, 1920×1080.
+Storyboard for a 60–75s narrated explainer video (1920×1080), renderable with any
+HTML-to-video or motion-graphics tool. B-roll is ready: `ablation.gif` and `splitscreen.gif`.
 
 | # | Duration | On-screen | Narration |
 |---|---|---|---|

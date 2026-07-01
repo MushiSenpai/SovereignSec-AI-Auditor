@@ -1,10 +1,12 @@
-# SovereignSec-AI
+# SovereignSec-AI-Auditor
 
 > A fully local, agentic AI security reviewer for proprietary codebases.
 > Understands a whole repo, explains its reasoning, **validates its own findings**, and never sends a byte off the machine.
 
 A deterministic **cross-file taint engine** + SAST + an optional local LLM, combined in a **hybrid**
 that returns *proof-carrying* findings — fully air-gapped.
+
+![sscai audit — air-gapped MVP demo](demo/recording/mvp_cli.gif)
 
 ## Quick start (the MVP)
 ```bash
@@ -22,8 +24,8 @@ PYTHONPATH=. python -m sscai audit demo/seeded_repo
 The `✔ PROVEN` findings carry a deterministic source→sink taint path — not an LLM guess.
 
 ## Honest results (all measured — see `bench/results/`)
-- **Hybrid (LLM + system) 0.97** on a hard 29-module benchmark, beating LLM-alone (0.90).
-- **Cross-file taint** traces vulns across files with **zero false positives on safe-but-suspicious decoys** (where a per-file LLM false-positives).
+- **Hybrid (LLM + system) 0.97 recall** on a hard 29-module benchmark, beating LLM-alone (0.90). The breadth trades finding-precision (0.51 vs the agentic config's 0.61) — mitigated by **38 proof-carrying findings** an analyst triages first.
+- **Cross-file taint** traces vulns across files with **precision 1.00 / recall 1.00 — zero false positives**. On the same test a per-file LLM misses 2/5 real vulns and raises 9 false positives on other functions (precision 0.25); the taint engine flags only proven source→sink paths.
 - **The fine-tune adds ~0 detection** over the base — its honest value is output schema/calibration. Capability lives in the *system*. (See [`INSIGHTS.md`](INSIGHTS.md).)
 
 ## Models (HuggingFace)
@@ -42,7 +44,7 @@ Two QLoRA adapters (Qwen2.5-Coder), trained locally on a single RTX 5090 on 879 
 
 ## Layout
 ```
-sovereign-code-auditor/
+SovereignSec-AI-Auditor/
 ├── README.md
 ├── EXPLAIN_LIKE_IM_10.md   # the whole project in plain English (start here)
 ├── INSIGHTS.md             # honest field report — what building this taught me
@@ -73,7 +75,7 @@ sovereign-code-auditor/
 - **L1–L5 system** ✅ implemented, **12 tests green** against `demo/seeded_repo/`.
 - **Data moat** ✅ GHSA→fix-commit miner validated on real OSV data; **879 real vuln→patch pairs** mined (see [`BLOG_QUEUE.md`](BLOG_QUEUE.md) F1).
 - **Fine-tune** ✅ LoRA adapters trained on 1.5B / 7B / 32B Qwen2.5-Coder (losses 0.856 / 0.686 / 0.562); **post-cutoff detection delta +0.0** — value is output schema/calibration, not detection. [Adapters on HuggingFace](https://huggingface.co/MushiSenpai/SovereignSec-Auditor-LoRA-Qwen2.5-Coder-7B).
-- **Hybrid** ✅ **0.97** on the 29-module benchmark (beats LLM-alone 0.90). All numbers in [`bench/results/`](bench/results/).
+- **Hybrid** ✅ **0.97 recall** on the 29-module benchmark (beats LLM-alone 0.90; finding-precision 0.51 vs agentic 0.61 — 38 findings carry deterministic proof). All numbers in [`bench/results/`](bench/results/).
 - **Learnings:** every failure + fix is in [`BLOG_QUEUE.md`](BLOG_QUEUE.md).
 
 ## Dev setup & tests

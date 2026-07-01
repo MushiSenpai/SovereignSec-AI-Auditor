@@ -11,7 +11,7 @@ file besides [`INSIGHTS.md`](../INSIGHTS.md), read this one.
 rigorous *finding*, not a failure — and it's the most valuable result here.** Two separate things:
 
 ### Did we actually fine-tune the model? Yes — unambiguously.
-We trained real LoRA adapters on three model sizes (1.5B, 7B, 32B). On the real 890-record mined set
+We trained real LoRA adapters on three model sizes (1.5B, 7B, 32B). On the real 890-record training set (built from 879 mined vuln→patch pairs)
 the training loss dropped with scale every time (1.5B → 7B → 32B: **0.856 → 0.686 → 0.562**), the
 adapter files exist and load, and when you feed the fine-tuned
 model vulnerable code it emits a clean `FINDING: {"cwe":"CWE-89",...}`. That is a real, working
@@ -40,11 +40,15 @@ base model. That sounds bad. It isn't, for three reasons:
    thing that is.**
 
 ### So where's the actual success? The system, not the adapter.
-- The **hybrid** (LLM + cross-file taint + SAST) scored **0.97** on a hard benchmark — beating the
-  LLM alone (0.90) and everything else.
+- The **hybrid** (LLM + cross-file taint + SAST) scored **0.97 recall** on a hard benchmark —
+  beating the LLM alone (0.90) and everything else. The breadth costs finding-precision (0.51 vs
+  the agentic config's 0.61), which is why **38 of its findings carry deterministic proof** — the
+  high-confidence subset an analyst triages first.
 - The **cross-file taint engine** deterministically traces vulnerabilities across files (recall and
-  precision **1.0**, zero false positives on safe-but-suspicious decoys) — something an LLM
-  fundamentally can't do reliably (a per-file LLM scored 0.60 / 0.25 on the same test).
+  precision **1.0**, zero false positives) — something an LLM fundamentally can't do reliably: on
+  the same test a per-file LLM missed 2/5 real vulns and raised 9 false positives on other
+  functions (recall 0.60, precision 0.25), while the taint engine flags only proven source→sink
+  paths.
 - It's **fully air-gapped** — no code ever leaves the machine.
 
 The fine-tune is one honest cog: it makes the LLM's output clean and parseable so the system can

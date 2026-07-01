@@ -31,7 +31,9 @@ loras/
 bench/results/*.raw
 bench/results/*.tmp
 
-# recordings (large media; keep tapes/scripts, not the rendered files)
+# recordings — keep tapes/scripts; heavy video formats stay out.
+# The demo GIFs ARE tracked (force-added with `git add -f`) so the README/docs embeds
+# render on GitHub; the *.gif rule below only keeps NEW gifs from sneaking in untracked.
 demo/recording/*.mp4
 demo/recording/*.gif
 demo/recording/*.webm

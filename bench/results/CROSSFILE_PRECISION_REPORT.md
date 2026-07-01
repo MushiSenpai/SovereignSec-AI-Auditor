@@ -7,7 +7,7 @@
 | PER-FILE LLM | 0.60 | 0.25 | 0/10 |
 | **SYSTEM (cross-file taint)** | **1.00** | **1.00** | **0/10** |
 
-**Precision: per-file LLM 0.25 → cross-file taint 1.00.** The LLM false-positives on 0/10 safe decoys; the taint engine on 0/10 — it only flags paths user input reaches.
+**Precision: per-file LLM 0.25 → cross-file taint 1.00.** Neither config flags the safe decoys (0/10 each). The LLM's failure mode is elsewhere: it misses 2/5 real vulns (recall 0.60) and raises 9 false positives on *other* functions (precision 0.25). The taint engine flags only proven source→sink paths — 5/5 real vulns, 0 false positives anywhere.
 
 Per-app (real flagged? / decoy FPs):
 - app0_fetch [CWE-918]: per-file real=N decoyFP=none | system real=Y decoyFP=none
